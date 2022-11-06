@@ -1,0 +1,21 @@
+{
+  "name": "thefreshmarket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gitAdd": "git add . && git commit -m 'updated files' && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kein-1/TheFreshMarket.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kein-1/TheFreshMarket/issues"
+  },
+  "homepage": "https://github.com/kein-1/TheFreshMarket#readme"
+}
