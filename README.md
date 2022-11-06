@@ -11,3 +11,4 @@ Grocery Shopping App built using React, Node.js, PostgreSQL, and Express. Styled
 - Dotenv - Saving and accessing environment variables
 - Bcrypt - Password hashing for users
 - Express-async-errors - Removes the need to try/catch every backend request in an async function. Automatically sends the error to the express error handling middleware once the error is detected
+- ESlint - Styling guide. Runs through your files for recommended styling and good code practice I used Airbnb's
