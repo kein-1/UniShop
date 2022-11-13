@@ -14,5 +14,12 @@ module.exports = {
     quotes: "off",
     eqeqeq: "error",
     "no-console": 0,
+    "prefer-destructuring": [
+      "error",
+      {
+        array: false,
+        object: false,
+      },
+    ],
   },
 };
