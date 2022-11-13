@@ -1,6 +1,6 @@
 # TheFreshMarket
 
-Grocery Shopping App built using React, Node.js, PostgreSQL, and Express. Styled using TailwindCSS
+E-commerce Shopping App built using React, Node.js, PostgreSQL, and Express. Styled using TailwindCSS
 
 
 
