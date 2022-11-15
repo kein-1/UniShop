@@ -16,3 +16,9 @@ content-type: application/json
     "username": "user",
     "password": "user"
 }
+
+
+####
+GET http://localhost:3001/api/products/1111 
+content-type: application/json
+

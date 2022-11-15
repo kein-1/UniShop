@@ -10,15 +10,15 @@ const errorHandler = async (error, request, response, next) => {
       .status(error.status)
       .json({ errorType: error.name, errorMessage: error.message });
   }
-  // Handling PostgreSQL error
+  // Handling PostgreSQL error. An Error object will have a .name and .message field
   if (error.name === "error") {
-    console.log(`The error type is ${error.name}`);
-    console.log(error.detail);
+    console.log(`The error type is ${error.name}. This is a PostgreSQL error`);
 
-    return response.status(400).json({ errorType: error.detail });
+    return response.status(400).json({ errorType: error.name, errorMessage: error.message });
   }
   console.log("DIFFERENT ERROR");
-  return response.status(400).json({ error });
+  console.log(error);
+  return response.status(400).json({ error: error.message });
 };
 
 module.exports = errorHandler;

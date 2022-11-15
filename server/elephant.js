@@ -14,7 +14,7 @@ const connectHandler = async () => {
     console.log(error);
   }
 };
-console.log("Logged in elephant")
+console.log("Logged in elephant");
 connectHandler();
 
 // We don't need to export connectHandler since we are running it in here.

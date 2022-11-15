@@ -281,4 +281,4 @@ const products = [
 // };
 
 // addItems();
-// module.exports = addItems;
+module.exports = display;
