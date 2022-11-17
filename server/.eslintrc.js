@@ -13,7 +13,7 @@ module.exports = {
   rules: {
     quotes: "off",
     eqeqeq: "error",
-    "no-console": 0,
+    "no-console": "off",
     "prefer-destructuring": [
       "error",
       {

@@ -24,13 +24,13 @@ app.use(morgan("tiny"));
 app.use(cors());
 app.use(cookieParser());
 
-app.use(
-  session({
-    secret: "mochi",
-    resave: false,
-    saveUninitalized: true,
-  }),
-);
+// app.use(
+//   session({
+//     secret: "mochi",
+//     resave: false,
+//     saveUninitalized: true,
+//   }),
+// );
 
 app.use("/api/users", usersRouter);
 app.use("/api/products", productRouter);

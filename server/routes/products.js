@@ -27,7 +27,7 @@ productRouter.get("/:id", async (request, response, next) => {
   pass in here will be the error object
   */
   if (data.rowCount === 0) return next(new Error("NO MATCHES"));
-  console.log(data);
+  // console.log(data);
   return response.status(200).json({ data: data.rows });
 });
 
