@@ -2,7 +2,6 @@ const express = require("express");
 
 const productRouter = express.Router();
 
-
 const client = require("../elephant");
 
 productRouter.get("/", async (request, response) => {
