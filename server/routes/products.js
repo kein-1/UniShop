@@ -1,6 +1,8 @@
 const express = require("express");
 
 const productRouter = express.Router();
+
+
 const client = require("../elephant");
 
 productRouter.get("/", async (request, response) => {
@@ -10,7 +12,6 @@ productRouter.get("/", async (request, response) => {
 });
 
 productRouter.get("/:id", async (request, response, next) => {
-  response.cookie("visited", true);
   const { id } = request.params;
 
   // Pass in the query string and the variable itself. We use $1 etc to plug variables
