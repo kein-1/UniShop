@@ -2,8 +2,6 @@ import Star from "./Star"
 import EmptyStar from "./EmptyStar"
 import Quantity from "./QuantityButtons"
 
-import { useState } from "react"
-
 const ProductOverviewContent = (props) => {
   const {
     category,
