@@ -6,7 +6,6 @@ const client = require("../elephant");
 
 productRouter.get("/", async (request, response) => {
   const data = await client.query("SELECT * FROM products");
-  console.log(data);
   return response.status(200).json({ data: data.rows });
 });
 
