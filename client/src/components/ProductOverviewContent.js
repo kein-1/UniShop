@@ -1,7 +1,6 @@
 import Star from "./Star"
 import EmptyStar from "./EmptyStar"
 import Quantity from "./QuantityButtons"
-console.log("random")
 const ProductOverviewContent = (props) => {
   const {
     category,
