@@ -1,6 +1,6 @@
 import { getAllProducts } from "../services/products"
 import { useState, useEffect } from "react"
-import ProductCard from "../components/productcard"
+import ProductCard from "../components/ProductCard"
 
 const ProductsMain = () => {
   const [products, setProducts] = useState([])

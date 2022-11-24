@@ -8,4 +8,9 @@ const getAllProducts = async () => {
   return items.data
 }
 
-export { getAllProducts }
+const getSpecificProduct = async (id) => {
+  const items = await axios.get(`${baseUrl}/${id}`)
+  return items.data
+}
+
+export { getAllProducts, getSpecificProduct }

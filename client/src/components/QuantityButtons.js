@@ -1,12 +1,12 @@
 import { useState } from "react"
 import { addProductToCart } from "../services/cart"
 
-const ProductCard = (props) => {
-  const { category, id, price, product_image, title } = props
+const Quantity = (props) => {
+  const { id, price, title } = props
 
   const [quantity, setQuantity] = useState(1)
   const [totalPrice, setTotalPrice] = useState(price)
-  console.log(typeof price)
+
   const addProductHandler = async () => {
     try {
       await addProductToCart({ id, title, quantity, totalPrice })
@@ -16,20 +16,8 @@ const ProductCard = (props) => {
   }
 
   return (
-    <div className="flex flex-col max-w-xs justify-between rounded-lg overflow-hidden shadow-lg gap-2 p-4">
-      <div className="w-12/12 h-1/2 object-contain">
-        <a href="">
-          <img
-            className="max-h-full max-w-full"
-            src={product_image}
-            alt="Sunset in the mountains"
-          />
-        </a>
-      </div>
-      <h3 className="mt-6 font-semibold">{title}</h3>
-
-      <div className="flex justify-between items-center">
-        <h3 className="font-semibold">${price}</h3>
+    <>
+      <div className="flex justify-between items-center mb-6">
         <div className="flex gap-4">
           <h3
             className="font-semibold"
@@ -64,8 +52,8 @@ const ProductCard = (props) => {
           Add To Cart
         </button>
       </div>
-    </div>
+    </>
   )
 }
 
-export default ProductCard
+export default Quantity

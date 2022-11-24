@@ -42,8 +42,6 @@ cartRouter.post("/", async (request, response) => {
     */
     items.forEach((element) => {
       if (id === element.id) {
-        console.log("WE HAVE IT");
-
         element.quantity += quantity;
         element.totalPrice += totalPrice;
         console.log(request.session);
@@ -58,6 +56,8 @@ cartRouter.post("/", async (request, response) => {
         totalPrice,
       });
     }
+    console.log(request.session);
+
     return response.status(201).send("Item added!");
   }
   request.session.items = [

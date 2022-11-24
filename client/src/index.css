@@ -12,6 +12,10 @@ body {
 }
 
 @layer base {
+  h1 {
+    @apply font-nanum text-2xl;
+  }
+
   h2 {
     @apply font-nanum text-xl;
   }
