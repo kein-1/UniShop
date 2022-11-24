@@ -33,7 +33,13 @@ cartRouter.post("/", async (request, response) => {
     request.session.items = [{ title, quantity, price }];
   }
 
+  console.log(request.session);
+
   response.status(201).send("Item added!");
 });
 
 module.exports = cartRouter;
+
+// s%3AdeYus-1PpyguRRFRv4ZKT28I4OD6SCrU.9MhMkp9csz8ERv1Uuyw2H4%2FfH5xbDSCbEw2HokAmTC0
+
+// s%3AEwYzn03CPToUBZW1n7bhkvGAHW4c7ncA.yt7Cc76LZZc2OO%2B79WAdpfs%2FXP%2F97IKjjDnCo9kh9%2Fc

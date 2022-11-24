@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,4 +12,15 @@ body {
 }
 
 @layer base {
+  h2 {
+    @apply font-nanum text-xl;
+  }
+
+  h3 {
+    @apply font-nanum text-sm;
+  }
+
+  h4 {
+    @apply font-nanum text-sm;
+  }
 }
