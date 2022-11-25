@@ -1,18 +1,36 @@
 import Star from "./Star"
 import EmptyStar from "./EmptyStar"
 import QuantityButtons from "./QuantityButtons"
+import { getSpecificProduct } from "../services/products"
+import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+
 const ProductOverviewContent = (props) => {
+  const { id } = useParams()
+  const [product, setProduct] = useState({})
+
+  useEffect(() => {
+    const getOne = async () => {
+      try {
+        const { data } = await getSpecificProduct(id)
+        setProduct(data[0])
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getOne()
+  }, [])
+
   const {
     category,
     description,
-    id,
     price,
     product_image,
     rating_count,
     rating_value,
     title
-  } = props
-  console.log(props)
+  } = product
+
   const roundedRating = Math.round(rating_value)
   const totalRatings = 5
   const starsArr = []
@@ -30,7 +48,7 @@ const ProductOverviewContent = (props) => {
       <div className="w-full h-auto">
         <img
           src={product_image}
-          className="w-1/2 m-w-1/2 m-h-auto m-auto"
+          className="w-full h-full m-h-auto m-auto"
           alt=""
         />
       </div>

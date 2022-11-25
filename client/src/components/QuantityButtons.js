@@ -3,16 +3,13 @@ import { addProductToCart } from "../services/cart"
 import { HiOutlinePlus, HiOutlineMinus } from "react-icons/hi"
 
 const QuantityButtons = (props) => {
-  const { id, price, title } = props
+  const { id, price, title, product_image } = props
   const [quantity, setQuantity] = useState(1)
-  console.log("In quantity buttons")
-  console.log(props)
-
-  console.log(price)
   const addProductHandler = async () => {
     try {
       const totalPrice = quantity * price
-      await addProductToCart({ id, title, quantity, totalPrice })
+      const productImage = product_image
+      await addProductToCart({ id, title, quantity, totalPrice, productImage })
     } catch {
       console.log("FAILED TO ADD TO CART")
     }

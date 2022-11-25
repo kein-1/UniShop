@@ -6,7 +6,11 @@ const baseUrl = "http://localhost:3001/api/cart"
 const addProductToCart = async (productInfo) => {
   const response = await axios.post(baseUrl, productInfo)
   console.log("added to cart")
-  console.log(response)
 }
 
-export { addProductToCart }
+const getAllCartItems = async () => {
+  const response = await axios.get(baseUrl)
+  return response.data
+}
+
+export { addProductToCart, getAllCartItems }

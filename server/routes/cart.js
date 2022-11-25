@@ -3,13 +3,14 @@ const express = require("express");
 const cartRouter = express.Router();
 const client = require("../elephant");
 
+// Setup an end point that lets you retrieve all the items in the cart
 cartRouter.get("/", async (request, response) => {
   console.log(request.headers);
   console.log(request.sessionID);
 
   const { items } = request.session;
   if (!items) {
-    return response.status(200).send("You have no items in your cart");
+    return response.status(200).json({ cart: [] });
   }
   console.log(items);
   return response.status(200).json({ cart: items });
@@ -17,7 +18,7 @@ cartRouter.get("/", async (request, response) => {
 
 cartRouter.post("/", async (request, response) => {
   const {
-    id, title, quantity, totalPrice,
+    id, title, quantity, totalPrice, productImage,
   } = request.body;
 
   console.log(request.headers);
@@ -54,6 +55,7 @@ cartRouter.post("/", async (request, response) => {
         title,
         quantity,
         totalPrice,
+        productImage,
       });
     }
     console.log(request.session);
@@ -66,6 +68,7 @@ cartRouter.post("/", async (request, response) => {
       title,
       quantity,
       totalPrice,
+      productImage,
     },
   ];
   console.log(request.session);
@@ -74,3 +77,24 @@ cartRouter.post("/", async (request, response) => {
 });
 
 module.exports = cartRouter;
+
+/*
+Express sessions:
+  1.First time visiting there will be no cookie. Express will recognize this
+  and assign a sessionID from its default memory store (not ideal. ideally
+  we would want to setup a database store)
+  2. The sessionID is stored as a random number of characters and sent back to the
+  client in the form of a cookie
+  3. Each subsequent request from the client will attach that cookie in its header,
+  allowing express to recognize who the user is
+  4. I stored the cart inside the Session object. By using express-session middleware,
+  express automatically parses the session field inside our request object. We can access
+  it using request.session. I coded it up so that we will populate the ITEMS field
+  of the sessions object.
+  5. Sessiosn object can store a lot more information on the server side and it is also
+  more secure
+  6. Here we are storing the user's cart items
+  7. Express recognizes that each session object will be different from every different
+  client because it checks its default memory store for the cookie that is sent with
+  the request
+*/
