@@ -1,14 +1,17 @@
 import { useState } from "react"
 import { addProductToCart } from "../services/cart"
+import { HiOutlinePlus, HiOutlineMinus } from "react-icons/hi"
 
-const Quantity = (props) => {
+const QuantityButtons = (props) => {
   const { id, price, title } = props
-
   const [quantity, setQuantity] = useState(1)
-  const [totalPrice, setTotalPrice] = useState(price)
+  console.log("In quantity buttons")
+  console.log(props)
 
+  console.log(price)
   const addProductHandler = async () => {
     try {
+      const totalPrice = quantity * price
       await addProductToCart({ id, title, quantity, totalPrice })
     } catch {
       console.log("FAILED TO ADD TO CART")
@@ -18,25 +21,23 @@ const Quantity = (props) => {
   return (
     <>
       <div className="flex justify-between items-center mb-6">
-        <div className="flex gap-4">
+        <div className="flex gap-4 items-center">
           <h3
-            className="font-semibold"
+            className="font-semibold hover:transform hover:scale-150 duration-500"
             onClick={() => {
               setQuantity(quantity - 1)
-              setTotalPrice(totalPrice - price)
             }}
           >
-            -
+            <HiOutlineMinus />
           </h3>
           <h3 className="font-semibold">{quantity}</h3>
           <h3
-            className="font-semibold"
+            className="font-semibold hover:transform hover:scale-150 duration-500"
             onClick={() => {
               setQuantity(quantity + 1)
-              setTotalPrice(totalPrice + price)
             }}
           >
-            +
+            <HiOutlinePlus />
           </h3>
         </div>
       </div>
@@ -56,4 +57,4 @@ const Quantity = (props) => {
   )
 }
 
-export default Quantity
+export default QuantityButtons

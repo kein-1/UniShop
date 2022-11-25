@@ -1,6 +1,6 @@
 import Star from "./Star"
 import EmptyStar from "./EmptyStar"
-import Quantity from "./QuantityButtons"
+import QuantityButtons from "./QuantityButtons"
 const ProductOverviewContent = (props) => {
   const {
     category,
@@ -12,7 +12,7 @@ const ProductOverviewContent = (props) => {
     rating_value,
     title
   } = props
-
+  console.log(props)
   const roundedRating = Math.round(rating_value)
   const totalRatings = 5
   const starsArr = []
@@ -28,7 +28,11 @@ const ProductOverviewContent = (props) => {
   return (
     <div className="flex px-20 py-20 gap-8">
       <div className="w-full h-auto">
-        <img src={product_image} className="w-1/2 m-w-1/2 m-h-auto" alt="" />
+        <img
+          src={product_image}
+          className="w-1/2 m-w-1/2 m-h-auto m-auto"
+          alt=""
+        />
       </div>
       <div className="flex flex-col w-full">
         <div>
@@ -53,7 +57,8 @@ const ProductOverviewContent = (props) => {
           <h3 className="my-4">Product Description</h3>
           <h3>{description}</h3>
         </div>
-        <Quantity {...props} />
+
+        <QuantityButtons {...props} />
       </div>
     </div>
   )
