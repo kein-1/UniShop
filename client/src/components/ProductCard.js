@@ -15,7 +15,7 @@ const ProductCard = (props) => {
             <img
               className="object-scale-down w-96 h-48"
               src={product_image}
-              alt="Sunset in the mountains"
+              alt=""
             />
           </Link>
         </div>

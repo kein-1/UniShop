@@ -19,11 +19,11 @@ const CartItem = (props) => {
                   <h3>
                     <a href={productImage}>{title}</a>
                   </h3>
-                  <p className="ml-4">{totalPrice}</p>
+                  <p className="ml-4">${totalPrice}</p>
                 </div>
               </div>
               <div className="flex flex-1 items-end justify-between text-sm">
-                <p className="text-gray-500">Qty {quantity}</p>
+                <p className="text-gray-500"> Qty {quantity}</p>
 
                 <div className="flex">
                   <button

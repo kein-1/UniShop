@@ -1,13 +1,22 @@
 import { Fragment, useState, useEffect } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import CartItem from "./CartItem"
-import axios from "axios"
 import { getAllCartItems } from "../services/cart"
+import { useNavigate } from "react-router-dom"
 
 const CartDisplay = () => {
   const [open, setOpen] = useState(false)
   const [cartItems, setCartItems] = useState([])
+  const [cartQuantity, setCartQuantity] = useState(0)
+  const [cartPrice, setCartPrice] = useState(0)
 
+  // Use navigate hook to redirect
+  const navigate = useNavigate()
+
+  // With this useEffect, I set it so that each time the bag is opened, the
+  // cart is retrieved by hitting the cart endpoint via the
+  // getAllCartItems function. Then this updates the current cart state
+  // and is displayed on the client side
   useEffect(() => {
     const getCartItems = async () => {
       try {
@@ -19,14 +28,26 @@ const CartDisplay = () => {
     }
     getCartItems()
   }, [open])
+
+  useEffect(() => {
+    const total = cartItems.reduce((prev, curr) => prev + curr.quantity, 0)
+    const price = cartItems.reduce((prev, curr) => prev + curr.totalPrice, 0)
+    setCartQuantity(total)
+    setCartPrice(price)
+  }, [open])
+
   console.log(cartItems)
+
   return (
     <>
       <h3
-        className="font-black hover:underline underline-offset-8 decoration-blue-600 tracking-widest"
+        className="font-black tracking-widest relative hover:cursor-pointer"
         onClick={() => setOpen(true)}
       >
         BAG
+        <span className="flex justify-center w-6 h-6 border-2 rounded-full border-purple-500 absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2">
+          {cartQuantity}
+        </span>
       </h3>
 
       <Transition.Root show={open} as={Fragment}>
@@ -46,7 +67,6 @@ const CartDisplay = () => {
           >
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
-
           <div className="fixed inset-0 overflow-hidden">
             <div className="absolute inset-0 overflow-hidden">
               <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -69,7 +89,7 @@ const CartDisplay = () => {
                           <div className="ml-3 flex h-7 items-center">
                             <button
                               type="button"
-                              className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                              className="-m-2 p-2 text-gray-400 hover:text-gray-700"
                               onClick={() => setOpen(false)}
                             >
                               X<span className="sr-only">Close panel</span>
@@ -89,31 +109,31 @@ const CartDisplay = () => {
                       <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <p>Subtotal</p>
-                          <p>$262.00</p>
+                          <p>${cartPrice}</p>
                         </div>
                         <p className="mt-0.5 text-sm text-gray-500">
                           Shipping and taxes calculated at checkout.
                         </p>
                         <div className="mt-6">
-                          <a
-                            href="#"
-                            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                          <button
+                            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 w-full"
+                            onClick={() => {
+                              navigate("/checkout")
+                              setOpen(false)
+                            }}
                           >
                             Checkout
-                          </a>
+                          </button>
                         </div>
                         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                          <p>
-                            or
-                            <button
-                              type="button"
-                              className="font-medium text-indigo-600 hover:text-indigo-500"
-                              onClick={() => setOpen(false)}
-                            >
-                              Continue Shopping
-                              <span aria-hidden="true"> &rarr;</span>
-                            </button>
-                          </p>
+                          <button
+                            type="button"
+                            className="font-medium text-indigo-600 hover:text-indigo-500"
+                            onClick={() => setOpen(false)}
+                          >
+                            Continue Shopping
+                            <span aria-hidden="true"> &rarr;</span>
+                          </button>
                         </div>
                       </div>
                     </div>

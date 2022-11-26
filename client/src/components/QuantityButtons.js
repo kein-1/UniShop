@@ -17,8 +17,8 @@ const QuantityButtons = (props) => {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-6">
-        <div className="flex gap-4 items-center">
+      <div className="flex justify-between items-center mb-2">
+        <div className="flex gap-4 justify-center items-center">
           <h3
             className="font-semibold hover:transform hover:scale-150 duration-500"
             onClick={() => {

@@ -3,7 +3,7 @@ import CartDisplay from "./CartDisplay"
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between px-12 py-6">
+    <nav className="flex justify-between px-12 py-6 sticky top-0">
       <ul className="flex gap-4">
         <Link to="/">
           <h3 className="font-black hover:underline underline-offset-8 decoration-blue-600 tracking-widest">

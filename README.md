@@ -14,3 +14,4 @@ E-commerce Shopping App built using React, Node.js, PostgreSQL, and Express. Sty
 - Bcrypt - Password hashing for users
 - Express-async-errors - Removes the need to try/catch every backend request in an async function. Automatically sends the error to the express error handling middleware once the error is detected
 - ESlint + Prettier - Runs a combination of ESlint + Prettier 
+- DaisyUI and HeadlessUI - Both are Tailwind CSS packages that I used to help style my project. The shopping cart sliding concept was taken from TailwindUI
