@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { addProductToCart } from "../services/cart"
 import { HiOutlinePlus, HiOutlineMinus } from "react-icons/hi"
 import { useQuantityStore, useTotalPriceStore } from "../stateStore"
