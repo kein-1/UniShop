@@ -31,6 +31,9 @@ const ProductOverviewContent = (props) => {
     title
   } = product
 
+  console.log("In product")
+  console.log(product)
+
   const roundedRating = Math.round(rating_value)
   const totalRatings = 5
   const starsArr = []
@@ -76,7 +79,7 @@ const ProductOverviewContent = (props) => {
           <h3>{description}</h3>
         </div>
 
-        <QuantityButtons {...props} />
+        <QuantityButtons {...product} />
       </div>
     </div>
   )

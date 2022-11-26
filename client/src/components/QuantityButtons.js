@@ -12,6 +12,9 @@ const QuantityButtons = (props) => {
   name even if there are parameters!! I ran into an infinite loop when i did the
   code :
   const updateQuantity = useQuantityStore((state) => state.setCartQuantity(quantity))
+
+  Here we are retrieving the two functions from our store and using them to
+  update our current states
   */
   const updateQuantity = useQuantityStore((state) => state.setCartQuantity)
   const updateTotalPrice = useTotalPriceStore((state) => state.setTotalPrice)

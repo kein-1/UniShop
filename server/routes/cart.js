@@ -16,6 +16,17 @@ cartRouter.get("/", async (request, response) => {
   return response.status(200).json({ cart: items });
 });
 
+cartRouter.delete("/:id", async (request, response) => {
+  const { id } = request.params;
+
+  if (!id) return response.status(400).send("Missing id");
+
+  const { items } = request.session;
+  if (!items) return response.status(400).send("No items in cart. Invalid request to delete");
+  request.session.items = items.filter((element) => element.id !== Number(id));
+  return response.status(201).json("deleted from cart");
+});
+
 cartRouter.post("/", async (request, response) => {
   const {
     id, title, quantity, totalPrice, productImage,

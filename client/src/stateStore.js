@@ -8,13 +8,22 @@ import create from "zustand"
 const useQuantityStore = create((set) => ({
   cartQuantity: 0,
   setCartQuantity: (quantity) =>
-    set((state) => ({ cartQuantity: state.cartQuantity + quantity }))
+    set((state) => ({ cartQuantity: state.cartQuantity + quantity })),
+
+  removeCartQuantity: (quantity) =>
+    set((state) => ({ cartQuantity: state.cartQuantity - quantity }))
 }))
 
 const useTotalPriceStore = create((set) => ({
   totalPrice: 0,
   setTotalPrice: (price) =>
-    set((state) => ({ totalPrice: state.totalPrice + price }))
+    set((state) => ({
+      totalPrice: parseFloat((state.totalPrice + price).toFixed(3))
+    })),
+  decreaseTotalPrice: (price) =>
+    set((state) => ({
+      totalPrice: parseFloat((state.totalPrice - price).toFixed(3))
+    }))
 }))
 
 export { useQuantityStore, useTotalPriceStore }

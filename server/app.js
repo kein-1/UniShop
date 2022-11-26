@@ -25,7 +25,7 @@ app.use(morgan("tiny"));
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
     credentials: true,
   }), // had to configure this for cookies to send.. need to update origin when in production
 );

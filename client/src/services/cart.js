@@ -13,4 +13,9 @@ const getAllCartItems = async () => {
   return response.data
 }
 
-export { addProductToCart, getAllCartItems }
+const deleteItemFromCart = async (id) => {
+  const response = await axios.delete(`${baseUrl}/${id}`)
+  return response.data
+}
+
+export { addProductToCart, getAllCartItems, deleteItemFromCart }

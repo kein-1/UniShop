@@ -8,13 +8,9 @@ import { useQuantityStore, useTotalPriceStore } from "../stateStore"
 const CartDisplay = () => {
   const [open, setOpen] = useState(false)
   const [cartItems, setCartItems] = useState([])
-  // const [cartQuantity, setCartQuantity] = useState(0)
-  // const [cartPrice, setCartPrice] = useState(0)
 
   const cartQuantity = useQuantityStore((state) => state.cartQuantity)
   const cartPrice = useTotalPriceStore((state) => state.totalPrice)
-
-  console.log("CURRENT cart quantity is: " + cartQuantity)
 
   // Use navigate hook to redirect
   const navigate = useNavigate()
@@ -23,6 +19,9 @@ const CartDisplay = () => {
   // cart is retrieved by hitting the cart endpoint via the
   // getAllCartItems function. Then this updates the current cart state
   // and is displayed on the client side
+  // Currently it is a very expensive operation. I set it so that each time the cart changes
+  // it makes a get request to the cart end point in the backend
+  // Should i store the cart values in a state?
   useEffect(() => {
     const getCartItems = async () => {
       try {
@@ -33,15 +32,7 @@ const CartDisplay = () => {
       }
     }
     getCartItems()
-  }, [open])
-
-  // Delete this block of code. It is not used. Took care of it with Zustand
-  // useEffect(() => {
-  //   const total = cartItems.reduce((prev, curr) => prev + curr.quantity, 0)
-  //   const price = cartItems.reduce((prev, curr) => prev + curr.totalPrice, 0)
-  //   setCartQuantity(total)
-  //   setCartPrice(price)
-  // }, [open])
+  }, [open, cartQuantity, cartPrice])
 
   console.log(cartItems)
 

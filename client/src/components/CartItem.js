@@ -1,6 +1,23 @@
+import { useQuantityStore, useTotalPriceStore } from "../stateStore"
+import { deleteItemFromCart } from "../services/cart"
 const CartItem = (props) => {
   const { id, title, quantity, totalPrice, productImage } = props
 
+  // Import the functions from our state store which will update our state values
+  const updateQuantity = useQuantityStore((state) => state.removeCartQuantity)
+  const updateTotalPrice = useTotalPriceStore(
+    (state) => state.decreaseTotalPrice
+  )
+
+  const removeCartItemHandler = async (id) => {
+    try {
+      await deleteItemFromCart(id)
+      updateQuantity(quantity)
+      updateTotalPrice(totalPrice)
+    } catch {
+      console.log("FAILED TO REMOVE CART ITEM")
+    }
+  }
   return (
     <div className="mt-8">
       <div className="flow-root">
@@ -29,6 +46,7 @@ const CartItem = (props) => {
                   <button
                     type="button"
                     className="font-medium text-indigo-600 hover:text-indigo-500"
+                    onClick={() => removeCartItemHandler(id)}
                   >
                     Remove
                   </button>
