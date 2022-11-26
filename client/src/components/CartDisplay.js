@@ -3,12 +3,18 @@ import { Dialog, Transition } from "@headlessui/react"
 import CartItem from "./CartItem"
 import { getAllCartItems } from "../services/cart"
 import { useNavigate } from "react-router-dom"
+import { useQuantityStore, useTotalPriceStore } from "../stateStore"
 
 const CartDisplay = () => {
   const [open, setOpen] = useState(false)
   const [cartItems, setCartItems] = useState([])
-  const [cartQuantity, setCartQuantity] = useState(0)
-  const [cartPrice, setCartPrice] = useState(0)
+  // const [cartQuantity, setCartQuantity] = useState(0)
+  // const [cartPrice, setCartPrice] = useState(0)
+
+  const cartQuantity = useQuantityStore((state) => state.cartQuantity)
+  const cartPrice = useTotalPriceStore((state) => state.totalPrice)
+
+  console.log("CURRENT cart quantity is: " + cartQuantity)
 
   // Use navigate hook to redirect
   const navigate = useNavigate()
@@ -29,12 +35,13 @@ const CartDisplay = () => {
     getCartItems()
   }, [open])
 
-  useEffect(() => {
-    const total = cartItems.reduce((prev, curr) => prev + curr.quantity, 0)
-    const price = cartItems.reduce((prev, curr) => prev + curr.totalPrice, 0)
-    setCartQuantity(total)
-    setCartPrice(price)
-  }, [open])
+  // Delete this block of code. It is not used. Took care of it with Zustand
+  // useEffect(() => {
+  //   const total = cartItems.reduce((prev, curr) => prev + curr.quantity, 0)
+  //   const price = cartItems.reduce((prev, curr) => prev + curr.totalPrice, 0)
+  //   setCartQuantity(total)
+  //   setCartPrice(price)
+  // }, [open])
 
   console.log(cartItems)
 

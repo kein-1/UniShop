@@ -1,15 +1,28 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { addProductToCart } from "../services/cart"
 import { HiOutlinePlus, HiOutlineMinus } from "react-icons/hi"
+import { useQuantityStore, useTotalPriceStore } from "../stateStore"
 
 const QuantityButtons = (props) => {
   const { id, price, title, product_image } = props
   const [quantity, setQuantity] = useState(1)
+
+  /*
+  I realized I was calling this function wrong. Make sure you ONLY include the
+  name even if there are parameters!! I ran into an infinite loop when i did the
+  code :
+  const updateQuantity = useQuantityStore((state) => state.setCartQuantity(quantity))
+  */
+  const updateQuantity = useQuantityStore((state) => state.setCartQuantity)
+  const updateTotalPrice = useTotalPriceStore((state) => state.setTotalPrice)
+
   const addProductHandler = async () => {
     try {
       const totalPrice = quantity * price
       const productImage = product_image
       await addProductToCart({ id, title, quantity, totalPrice, productImage })
+      updateQuantity(quantity)
+      updateTotalPrice(totalPrice)
     } catch {
       console.log("FAILED TO ADD TO CART")
     }
