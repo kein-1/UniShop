@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Home = () => {
   return (
     <>
@@ -8,8 +10,11 @@ const Home = () => {
             type="video/mp4"
           />
         </video>
-        <h1 className="text-slate-200 absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <h1 className="text-slate-200 absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl text-center">
           THE ONLY SHOP YOU NEED
+          <p className="mt-4 text-lg underline underline-offset-8">
+            <Link to="/shop">Shop now</Link>
+          </p>
         </h1>
       </div>
 
