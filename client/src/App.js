@@ -5,9 +5,9 @@ import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import ProductOverviewContent from "./components/ProductOverviewContent"
 
-import Home from "./pages/home"
-import ProductsMain from "./pages/products"
-import Checkout from "./pages/checkout"
+import Home from "./pages/Home"
+import ProductsMain from "./pages/ProductsMain"
+import Checkout from "./pages/Checkout"
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<ProductsMain />} />
         <Route path="/products/:id" element={<ProductOverviewContent />} />
-        <Route path="/checkout" element={<Checkout/>} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
     </>

@@ -28,6 +28,6 @@ E-commerce Shopping App built using React, Node.js, PostgreSQL, and Express. Sty
 2. <ins> Session object in backend </ins> - Each user has a different cart in the backend since this is managed through the session store by express-session. Ideally we would use a database to store the sessions of each user
   a. Server-side sessions can store a lot more data and is more secure. It communicates with the client side via a string that is sent back from the server. This string is stored as a cookie on the client side 
 3. <ins> State management library with Zustand </ins> - I used this so I can share state between components. This is how when a user adds or removes an item, the price and the display in the cart is updated immediately since the state changes => component re-renders
-4. <ins> PostgreSQL </ins>. I learned some SQL and basic commands with this project. My database consists of users and product items 
+4. <ins> PostgreSQL </ins> I learned some basic SQL commands with this project. My database consists of users and product items 
 5. <ins> Styling with TailwindCSS </ins> - Utilized a combination of DaisyUI and HeadlessUI to help with some of the complicated animation styling. CSS is still tough!
 6. <ins> React Router </ins> - Applied React Router (Routes and Links) to render different components based on the URL. This gives the website routing and renders different components based on the URL the site is on
