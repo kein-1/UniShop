@@ -5,6 +5,8 @@ import { getSpecificProduct } from "../services/products"
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 
+const totalRatings = 5
+
 const ProductOverviewContent = (props) => {
   const { id } = useParams()
   const [product, setProduct] = useState({})
@@ -31,11 +33,7 @@ const ProductOverviewContent = (props) => {
     title
   } = product
 
-  console.log("In product")
-  console.log(product)
-
   const roundedRating = Math.round(rating_value)
-  const totalRatings = 5
   const starsArr = []
 
   for (let i = 0; i < roundedRating; i++) {

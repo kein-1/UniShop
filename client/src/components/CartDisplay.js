@@ -9,6 +9,7 @@ const CartDisplay = () => {
   const [open, setOpen] = useState(false)
   const [cartItems, setCartItems] = useState([])
 
+  // The global states we stored
   const cartQuantity = useQuantityStore((state) => state.cartQuantity)
   const cartPrice = useTotalPriceStore((state) => state.totalPrice)
 

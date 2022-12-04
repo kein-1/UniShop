@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3000", // look up how to configure this based on dev/production. Probably use a .envc variable
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
     credentials: true,
   }), // had to configure this for cookies to send.. need to update origin when in production
@@ -43,4 +43,12 @@ app.use("/api/products", productRouter);
 app.use("/api/cart", cartRouter);
 
 app.use(errorHandler);
+
+// No real difference.. I can do the listen here or I can export the app and then
+// use node's http to createServer and pass in our app
+
+// const PORT = process.env.PORT || 3001;
+
+// app.listen(PORT, () => console.log(`LISTENING ON PORT ${PORT}`));
+
 module.exports = app;

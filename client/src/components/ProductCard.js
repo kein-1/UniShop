@@ -10,7 +10,7 @@ const ProductCard = (props) => {
   return (
     <>
       <div className="flex flex-col max-w-xs justify-between rounded-lg overflow-hidden shadow-lg gap-2 p-4">
-        <div className="w-12/12 h-1/2 object-contain">
+        <div className="w-12/12 h-auto m-h-1/2 object-contain">
           <Link to={"/products/" + id}>
             <img
               className="object-scale-down w-96 h-48"
@@ -19,8 +19,8 @@ const ProductCard = (props) => {
             />
           </Link>
         </div>
-        <h3 className="mt-6 font-semibold">{title}</h3>
-        <h2 className="font-semibold">${price}</h2>
+        <p className="mt-6 font-semibold text-base text-slate-500">{title}</p>
+        <p className="font-semibold text-base text-slate-500">$ {price}</p>
 
         <QuantityButtons {...props} />
       </div>

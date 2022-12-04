@@ -23,10 +23,10 @@ const CartItem = (props) => {
       <div className="flow-root">
         <ul role="list" className="-my-6 divide-y divide-gray-200">
           <li key={id} className="flex py-6">
-            <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+            <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg border border-gray-200">
               <img
                 src={productImage}
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full object-scale-down"
               />
             </div>
 

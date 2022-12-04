@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { addProductToCart } from "../services/cart"
-import { HiOutlinePlus, HiOutlineMinus } from "react-icons/hi"
+import {
+  HiOutlineArrowCircleUp,
+  HiOutlineArrowCircleDown
+} from "react-icons/hi"
 import { useQuantityStore, useTotalPriceStore } from "../stateStore"
 
 const QuantityButtons = (props) => {
@@ -33,38 +36,36 @@ const QuantityButtons = (props) => {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-2">
-        <div className="flex gap-4 justify-center items-center">
-          <h3
-            className="font-semibold hover:transform hover:scale-150 duration-500"
+      <div className="flex items-center">
+        <div className="flex gap-4 items-center w-full">
+          {/* added some transform, transition, and translate when clicked so it adds some animation to the buttons when clicked  */}
+          <p
+            className="font-semibold hover:transform hover:scale-150 duration-300 text-lg active:transform active:translate-y-4 active:duration-500 active:ease-out"
             onClick={() => {
               setQuantity(quantity - 1)
             }}
           >
-            <HiOutlineMinus />
-          </h3>
-          <h3 className="font-semibold">{quantity}</h3>
-          <h3
-            className="font-semibold hover:transform hover:scale-150 duration-500"
+            <HiOutlineArrowCircleDown />
+          </p>
+          <p className="font-semibold text-lg">{quantity}</p>
+          <p
+            className="font-semibold hover:transform hover:scale-150 duration-300 text-lg active:transform active:-translate-y-4 active:duration-500 active:ease-out"
             onClick={() => {
               setQuantity(quantity + 1)
             }}
           >
-            <HiOutlinePlus />
-          </h3>
+            <HiOutlineArrowCircleUp />
+          </p>
         </div>
-      </div>
 
-      <div className="flex gap-4 items-center">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-sm w-1/4">
-          Fav
-        </button>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-sm w-3/4"
-          onClick={addProductHandler}
-        >
-          Add To Cart
-        </button>
+        <div className="flex gap-4 w-full">
+          <button
+            className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full text-sm w-full active:transform active:scale-90 active:duration-200 active:ease-out "
+            onClick={addProductHandler}
+          >
+            Add To Cart
+          </button>
+        </div>
       </div>
     </>
   )
