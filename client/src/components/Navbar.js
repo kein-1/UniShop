@@ -26,7 +26,7 @@ const Navbar = () => {
             SEARCH
           </h3>
         </Link>
-        <Link to="/shop">
+        <Link to="/account">
           <h3 className="font-black hover:underline underline-offset-8 decoration-blue-600 tracking-widest">
             ACCOUNT
           </h3>
