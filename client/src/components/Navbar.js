@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom"
-import CartDisplay from "./CartDisplay"
+import { Link } from "react-router-dom";
+import CartDisplay from "./CartDisplay";
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between px-12 py-6 sticky top-0">
+    <nav className="flex justify-between px-12 py-6 sticky top-0 border-y-slate-400 border-b-2 bg-white">
       <ul className="flex gap-4">
         <Link to="/">
           <h3 className="font-black hover:underline underline-offset-8 decoration-blue-600 tracking-widest">
@@ -34,7 +34,7 @@ const Navbar = () => {
         <CartDisplay />
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
