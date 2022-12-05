@@ -1,49 +1,86 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   // When form is big, we can use this tactic to have all the forms share a single state object
   // rather than use multiple useStates for each form value
-  const [form, setForm] = useState({
-    email: "",
-    username: "",
-    password: ""
-  })
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const formHandler = (event) => {
-    event.preventDefault()
-    console.log(event.target.id)
-  }
+    event.preventDefault();
+  };
 
-  // Learned this: ES6 bracket notation around a key lets us use a variable key
-  // So now we can just copy over the current form object, then replace the key with
-  // the ID key value (based on the input values ID)
-  const inputHandler = (event) => {
-    console.log(form)
-    setForm({ ...form, [event.target.id]: event.target.value })
-  }
+  const emailHandler = (event) => {
+    setEmail(event.target.value);
+  };
+  const userHandler = (event) => {
+    setUsername(event.target.value);
+  };
+  const passwordHandler = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const registerHandler = (event) => {
+    event.preventDefault();
+    console.log(email);
+    console.log(username);
+    console.log(password);
+  };
 
   return (
     <>
-      <div className="flex mt-12 w-1/2 m-auto gap-4 h-4/5">
-        <form className="w-full" onSubmit={formHandler}>
-          <div>
-            <input
-              type="number"
-              id="phoneNumber"
-              value={form.phoneNumber}
-              onChange={inputHandler}
-              className="input input-bordered input-primary w-full"
-              placeholder="Phone Number"
-            />
-          </div>
+      <form
+        className="flex flex-col mt-20 w-1/3 m-auto gap-4 border-2 border-2 border-purple-400 p-4"
+        onSubmit={registerHandler}
+      >
+        <div className="">
+          <input
+            type="text"
+            id="email"
+            value={email}
+            onChange={emailHandler}
+            className="input input-bordered input-primary w-full"
+            placeholder="Email"
+          />
+        </div>
 
-          <button className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full text-sm w-full active:transform active:scale-90 active:duration-200 active:ease-out ">
-            Place Order!
-          </button>
-        </form>
-      </div>
+        <div>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={userHandler}
+            className="input input-bordered input-primary w-full"
+            placeholder="Username"
+          />
+        </div>
+
+        <div>
+          <input
+            type="text"
+            id="password"
+            value={password}
+            onChange={passwordHandler}
+            className="input input-bordered input-primary w-full"
+            placeholder="Password"
+          />
+        </div>
+
+        <button className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full text-sm w-full active:transform active:scale-90 active:duration-200 active:ease-out ">
+          Register
+        </button>
+
+        <h4>
+          Already have an account?
+          <Link to="/login" className="text-violet-400">
+            Login here
+          </Link>
+        </h4>
+      </form>
     </>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
