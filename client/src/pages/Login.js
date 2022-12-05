@@ -20,9 +20,10 @@ const Login = () => {
 
   const loginHandler = (event) => {
     event.preventDefault();
-    console.log(email);
     console.log(username);
     console.log(password);
+    setUsername("");
+    setPassword("");
   };
 
   return (
@@ -57,8 +58,8 @@ const Login = () => {
           Login
         </button>
 
-        <h4>
-          Don't have an account? 
+        <h4 className="text-center">
+          Don't have an account?
           <Link to="/register" className="text-violet-400">
             Sign up here
           </Link>

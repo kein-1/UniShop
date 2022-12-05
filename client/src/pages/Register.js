@@ -24,9 +24,9 @@ const Register = () => {
 
   const registerHandler = (event) => {
     event.preventDefault();
-    console.log(email);
-    console.log(username);
-    console.log(password);
+    setEmail("");
+    setUsername("");
+    setPassword("");
   };
 
   return (
@@ -72,7 +72,7 @@ const Register = () => {
           Register
         </button>
 
-        <h4>
+        <h4 className="text-center">
           Already have an account?
           <Link to="/login" className="text-violet-400">
             Login here

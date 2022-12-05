@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react"
-import CartItem from "../components/CartItem"
-import { getAllCartItems } from "../services/cart"
-import { useTotalPriceStore } from "../stateStore"
+import { useState, useEffect } from "react";
+import CartItem from "../components/CartItem";
+import { getAllCartItems } from "../services/cart";
+import { useTotalPriceStore } from "../stateStore";
 
 const Checkout = () => {
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = useState([]);
 
   // When form is big, we can use this tactic to have all the forms share a single state object
   // rather than use multiple useStates for each form value
@@ -16,44 +16,53 @@ const Checkout = () => {
     city: "",
     state: "",
     zip: "",
-    phoneNumber: ""
-  })
+    phoneNumber: "",
+  });
 
   // The global states we stored
-  const cartPrice = useTotalPriceStore((state) => state.totalPrice)
+  const cartPrice = useTotalPriceStore((state) => state.totalPrice);
 
   useEffect(() => {
     const getCartItems = async () => {
       try {
-        const { cart } = await getAllCartItems()
-        setCartItems(cart)
+        const { cart } = await getAllCartItems();
+        setCartItems(cart);
       } catch {
-        console.log("FAILED TO RETRIEVE ITEMS")
+        console.log("FAILED TO RETRIEVE ITEMS");
       }
-    }
-    getCartItems()
-  }, [])
+    };
+    getCartItems();
+  }, []);
 
   const formHandler = (event) => {
-    event.preventDefault()
-    console.log(event.target.id)
-  }
+    event.preventDefault();
+    console.log(event.target.id);
+    setForm({
+      email: "",
+      firstName: "",
+      lastName: "",
+      street: "",
+      city: "",
+      state: "",
+      zip: "",
+      phoneNumber: "",
+    });
+  };
 
   // Learned this: ES6 bracket notation around a key lets us use a variable key
   // So now we can just copy over the current form object, then replace the key with
   // the ID key value (based on the input values ID)
   const inputHandler = (event) => {
-    console.log(form)
-    setForm({ ...form, [event.target.id]: event.target.value })
-  }
+    console.log(form);
+    setForm({ ...form, [event.target.id]: event.target.value });
+  };
 
   return (
     <>
       <div className="flex mt-12 w-1/2 m-auto gap-4 h-4/5">
-        <form className="w-full" onSubmit={formHandler}>
-          <div>
+        <form className="w-full flex flex-col gap-4" onSubmit={formHandler}>
+          <div className="flex flex-col gap-4">
             <p>Contact information</p>
-
             <div>
               <input
                 type="text"
@@ -66,8 +75,9 @@ const Checkout = () => {
             </div>
           </div>
 
-          <p className="mb-4">Shipping Address</p>
           <div className="flex flex-col gap-4">
+            <p className="">Shipping Address</p>
+
             <div className="flex gap-4">
               <input
                 type="text"
@@ -124,7 +134,7 @@ const Checkout = () => {
                 value={form.zip}
                 onChange={inputHandler}
                 className="input input-bordered input-primary w-full"
-                placeholder="Zip Code"
+                placeholder="Zip"
               />
             </div>
 
@@ -163,7 +173,7 @@ const Checkout = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Checkout
+export default Checkout;
