@@ -5,7 +5,7 @@ E-commerce Shopping App built using React, Node.js, PostgreSQL, and Express. Sty
 ### What I learned building this 
 
 #### Overall, this project took me a good amount of time. I worked a little bit on the weekdays and spent time on the weekends. It was also tough finding time to work on this between my full time job and my current course (last two assignments in Java and were extremely time consuming)  
-It was my first full stack app without any real guidance. A lot of the concepts I had to look up on my own but I think this is the best way to learn rather than watching a tutorial on projects.  
+It was my first full stack app without any real guidance. A lot of the concepts I had to look up on my own but I think this is the best way to learn rather than watching a tutorial on projects !!
 
 1. <ins> Cookies and Sessions </ins> - Previously I used JWT but for this project I used cookies and sessions. I learned to use sessions to store the user's shopping cart in the backend. Each successful POST request to a cart endpoint I setup will update the shopping cart with the users items
 2. <ins> Session object in backend </ins> - By using express-session, it populates the request object with a session field. We can access it using request.session (similar to how app.use(express.json()) parses incoming body fields into a "body" field in the request object and it is accessed through request.body)  
