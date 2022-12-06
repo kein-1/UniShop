@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import CartDisplay from "./CartDisplay";
+import { Link } from "react-router-dom"
+import CartDisplay from "./CartDisplay"
 
 const Navbar = () => {
   return (
@@ -34,7 +34,7 @@ const Navbar = () => {
         <CartDisplay />
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

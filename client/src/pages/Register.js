@@ -1,38 +1,38 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 const Register = () => {
   // When form is big, we can use this tactic to have all the forms share a single state object
   // rather than use multiple useStates for each form value
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
   const formHandler = (event) => {
-    event.preventDefault();
-  };
+    event.preventDefault()
+  }
 
   const emailHandler = (event) => {
-    setEmail(event.target.value);
-  };
+    setEmail(event.target.value)
+  }
   const userHandler = (event) => {
-    setUsername(event.target.value);
-  };
+    setUsername(event.target.value)
+  }
   const passwordHandler = (event) => {
-    setPassword(event.target.value);
-  };
+    setPassword(event.target.value)
+  }
 
   const registerHandler = (event) => {
-    event.preventDefault();
-    setEmail("");
-    setUsername("");
-    setPassword("");
-  };
+    event.preventDefault()
+    setEmail("")
+    setUsername("")
+    setPassword("")
+  }
 
   return (
     <>
       <form
-        className="flex flex-col mt-20 w-1/3 m-auto gap-4 border-2 border-2 border-purple-400 p-4"
+        className="flex flex-col mt-20 w-1/3 m-auto gap-4 border-2 border-purple-400 p-4"
         onSubmit={registerHandler}
       >
         <div className="">
@@ -80,7 +80,7 @@ const Register = () => {
         </h4>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

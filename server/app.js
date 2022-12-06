@@ -20,11 +20,14 @@ const usersRouter = require("./routes/users");
 const productRouter = require("./routes/products");
 const cartRouter = require("./routes/cart");
 
+// const origin = "http://localhost:3000";
+const origin = "https://5l7170-3000.preview.csb.app/";
+
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(
   cors({
-    origin: "http://localhost:3000", // look up how to configure this based on dev/production. Probably use a .envc variable
+    origin, // look up how to configure this based on dev/production. Probably use a .envc variable
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
     credentials: true,
   }), // had to configure this for cookies to send.. need to update origin when in production

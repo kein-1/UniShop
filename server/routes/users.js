@@ -13,12 +13,16 @@ usersRouter.post("/", async (request, response) => {
   const passwordHash = await bcrypt.hash(password, saltRounds);
   console.log(username + password + passwordHash + email);
 
-  const query = {
-    text: "INSERT into users(username,password_hash,email) VALUES ($1,$2,$3)",
-    values: [username, passwordHash, email],
-  };
+  // const query = {
+  //   text: "INSERT into users(username,password_hash,email) VALUES ($1,$2,$3)",
+  //   values: [username, passwordHash, email],
+  // };
 
-  await client.query(query);
+  await client.query("INSERT into users(username,password_hash,email) VALUES ($1,$2,$3)", [
+    username,
+    passwordHash,
+    email,
+  ]);
   return response.status(200).json({ username, passwordHash, email });
 });
 

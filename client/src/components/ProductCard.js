@@ -1,5 +1,3 @@
-import { useState } from "react"
-import { addProductToCart } from "../services/cart"
 import { Link } from "react-router-dom"
 
 import QuantityButtons from "./QuantityButtons"
