@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react"
-import CartItem from "../components/CartItem"
-import { getAllCartItems } from "../services/cart"
-import { useTotalPriceStore } from "../stateStore"
+import { useState, useEffect } from "react";
+import CartItem from "../components/CartItem";
+import { getAllCartItems } from "../services/cart";
+import { useTotalPriceStore } from "../stateStore";
 
 const Checkout = () => {
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = useState([]);
 
   // When form is big, we can use this tactic to have all the forms share a single state object
   // rather than use multiple useStates for each form value
@@ -16,29 +16,29 @@ const Checkout = () => {
     city: "",
     state: "",
     zip: "",
-    phoneNumber: ""
-  })
+    phoneNumber: "",
+  });
 
   // The global states we stored
-  const cartPrice = useTotalPriceStore((state) => state.totalPrice)
-  
-  // Instead of using another useEffect hook here, can we store the cartItem in a global state, and manage it through our stateStore? 
-  // 
+  const cartPrice = useTotalPriceStore((state) => state.totalPrice);
+
+  // Instead of using another useEffect hook here, can we store the cartItem in a global state, and manage it through our stateStore?
+  //
   useEffect(() => {
     const getCartItems = async () => {
       try {
-        const { cart } = await getAllCartItems()
-        setCartItems(cart)
+        const { cart } = await getAllCartItems();
+        setCartItems(cart);
       } catch {
-        console.log("FAILED TO RETRIEVE ITEMS")
+        console.log("FAILED TO RETRIEVE ITEMS");
       }
-    }
-    getCartItems()
-  }, [])
+    };
+    getCartItems();
+  }, []);
 
   const formHandler = (event) => {
-    event.preventDefault()
-    console.log(event.target.id)
+    event.preventDefault();
+    console.log(event.target.id);
     setForm({
       email: "",
       firstName: "",
@@ -47,21 +47,21 @@ const Checkout = () => {
       city: "",
       state: "",
       zip: "",
-      phoneNumber: ""
-    })
-  }
+      phoneNumber: "",
+    });
+  };
 
   // Learned this: ES6 bracket notation around a key lets us use a variable key
   // So now we can just copy over the current form object, then replace the key with
   // the ID key value (based on the input values ID)
   const inputHandler = (event) => {
-    console.log(form)
-    setForm({ ...form, [event.target.id]: event.target.value })
-  }
+    console.log(form);
+    setForm({ ...form, [event.target.id]: event.target.value });
+  };
 
   return (
     <>
-      <div className="flex mt-12 w-1/2 m-auto gap-4 h-4/5">
+      <div className="flex mt-12 w-3/5 m-auto gap-4">
         <form className="w-full flex flex-col gap-4" onSubmit={formHandler}>
           <div className="flex flex-col gap-4">
             <p>Contact information</p>
@@ -162,7 +162,7 @@ const Checkout = () => {
         {/* Add overflow-y-auto to add scrolling once the items overflow the given height. It will have
         a scroll bar  */}
         <div className="w-full">
-          <ul className="overflow-y-auto h-4/5">
+          <ul className="overflow-y-auto scroll-smooth h-4/5 scroll-px-1">
             {cartItems.length === 0 && <h3>NO ITEMS IN CART</h3>}
             {cartItems.length > 0 &&
               cartItems.map((element) => (
@@ -171,11 +171,11 @@ const Checkout = () => {
           </ul>
           <div className="divider"></div>
 
-          <p className="h-1/5 mb-4">$ Total Cost: {cartPrice}</p>
+          <p className="h-full mb-4">$ Total Cost: {cartPrice}</p>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Checkout
+export default Checkout;
