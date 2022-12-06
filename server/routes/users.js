@@ -13,17 +13,15 @@ usersRouter.post("/", async (request, response) => {
   const passwordHash = await bcrypt.hash(password, saltRounds);
   console.log(username + password + passwordHash + email);
 
-  // const query = {
-  //   text: "INSERT into users(username,password_hash,email) VALUES ($1,$2,$3)",
-  //   values: [username, passwordHash, email],
-  // };
+  // It is better to use paramatized variables such as below rather than string
+  // concatenation to prevent sql injection attacks
+  const query = {
+    text: "INSERT into users(username,password_hash,email) VALUES($1,$2,$3)",
+    values: [username, passwordHash, email],
+  };
 
-  await client.query("INSERT into users(username,password_hash,email) VALUES ($1,$2,$3)", [
-    username,
-    passwordHash,
-    email,
-  ]);
-  return response.status(200).json({ username, passwordHash, email });
+  await client.query(query);
+  return response.status(200).send("Successfully registered!");
 });
 
 module.exports = usersRouter;

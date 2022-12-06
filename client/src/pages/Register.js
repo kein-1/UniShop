@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import registerUser from "../services/users"
 
 const Register = () => {
   // When form is big, we can use this tactic to have all the forms share a single state object
@@ -7,10 +8,7 @@ const Register = () => {
   const [email, setEmail] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-
-  const formHandler = (event) => {
-    event.preventDefault()
-  }
+  const [message, setMessage] = useState("")
 
   const emailHandler = (event) => {
     setEmail(event.target.value)
@@ -22,11 +20,24 @@ const Register = () => {
     setPassword(event.target.value)
   }
 
-  const registerHandler = (event) => {
+  const registerHandler = async (event) => {
     event.preventDefault()
-    setEmail("")
-    setUsername("")
-    setPassword("")
+
+    const obj = {
+      email,
+      username,
+      password
+    } // Make a new object with our current values (tracked by the state)
+    try {
+      const message = await registerUser(obj) // register the user.
+      setEmail("")
+      setUsername("")
+      setPassword("")
+      setMessage(message)
+    } catch (error) {
+      const { message } = error.response.data
+      setMessage(message)
+    }
   }
 
   return (
@@ -35,6 +46,7 @@ const Register = () => {
         className="flex flex-col mt-20 w-1/3 m-auto gap-4 border-2 border-purple-400 p-4"
         onSubmit={registerHandler}
       >
+        <h3 className="text-center">{message}</h3>
         <div className="">
           <input
             type="text"

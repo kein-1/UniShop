@@ -20,8 +20,8 @@ const usersRouter = require("./routes/users");
 const productRouter = require("./routes/products");
 const cartRouter = require("./routes/cart");
 
-// const origin = "http://localhost:3000";
-const origin = "https://5l7170-3000.preview.csb.app/";
+const origin = "http://localhost:3000";
+// const origin = "https://5l7170-3000.preview.csb.app/";
 
 app.use(express.json());
 app.use(morgan("tiny"));

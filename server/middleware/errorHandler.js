@@ -12,9 +12,12 @@ const errorHandler = async (error, request, response, next) => {
   }
   // Handling PostgreSQL error. An Error object will have a .name and .message field
   if (error.name === "error") {
-    console.log(`The error type is ${error.name}. This is a PostgreSQL error`);
+    console.log(`The error name is ${error.name}. This is a PostgreSQL error`);
+    console.log(
+      `The error name is ${error.name}. This is a PostgreSQL error. Error message: ${error.message}`,
+    );
 
-    return response.status(400).json({ errorType: error.name, errorMessage: error.message });
+    return response.status(400).json({ message: "User already exists!" });
   }
   console.log("DIFFERENT ERROR");
   console.log(error);
