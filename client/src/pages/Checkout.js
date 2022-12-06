@@ -21,7 +21,9 @@ const Checkout = () => {
 
   // The global states we stored
   const cartPrice = useTotalPriceStore((state) => state.totalPrice)
-
+  
+  // Instead of using another useEffect hook here, can we store the cartItem in a global state, and manage it through our stateStore? 
+  // 
   useEffect(() => {
     const getCartItems = async () => {
       try {

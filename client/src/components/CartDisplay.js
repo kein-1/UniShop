@@ -1,20 +1,20 @@
-import { Fragment, useState, useEffect } from "react"
-import { Dialog, Transition } from "@headlessui/react"
-import CartItem from "./CartItem"
-import { getAllCartItems } from "../services/cart"
-import { useNavigate } from "react-router-dom"
-import { useQuantityStore, useTotalPriceStore } from "../stateStore"
+import { Fragment, useState, useEffect } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import CartItem from "./CartItem";
+import { getAllCartItems } from "../services/cart";
+import { useNavigate } from "react-router-dom";
+import { useQuantityStore, useTotalPriceStore } from "../stateStore";
 
 const CartDisplay = () => {
-  const [open, setOpen] = useState(false)
-  const [cartItems, setCartItems] = useState([])
+  const [open, setOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
 
   // The global states we stored
-  const cartQuantity = useQuantityStore((state) => state.cartQuantity)
-  const cartPrice = useTotalPriceStore((state) => state.totalPrice)
+  const cartQuantity = useQuantityStore((state) => state.cartQuantity);
+  const cartPrice = useTotalPriceStore((state) => state.totalPrice);
 
   // Use navigate hook to redirect
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // With this useEffect, I set it so that each time the bag is opened, the
   // cart is retrieved by hitting the cart endpoint via the
@@ -22,20 +22,23 @@ const CartDisplay = () => {
   // and is displayed on the client side
   // Currently it is a very expensive operation. I set it so that each time the cart changes
   // it makes a get request to the cart end point in the backend
-  // Should i store the cart values in a state or use local storage?
+  // Should i store the cart values in a state or use local storage?\
+
+  // Instead of using another useEffect hook here, can we store the cartItem in a global state, and manage it through our stateStore?
+
   useEffect(() => {
     const getCartItems = async () => {
       try {
-        const { cart } = await getAllCartItems()
-        setCartItems(cart)
+        const { cart } = await getAllCartItems();
+        setCartItems(cart);
       } catch {
-        console.log("FAILED TO RETRIEVE ITEMS")
+        console.log("FAILED TO RETRIEVE ITEMS");
       }
-    }
-    getCartItems()
-  }, [open, cartQuantity, cartPrice])
+    };
+    getCartItems();
+  }, [open, cartQuantity, cartPrice]);
 
-  console.log(cartItems)
+  console.log(cartItems);
 
   return (
     <>
@@ -117,8 +120,8 @@ const CartDisplay = () => {
                           <button
                             className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 w-full"
                             onClick={() => {
-                              navigate("/checkout")
-                              setOpen(false)
+                              navigate("/checkout");
+                              setOpen(false);
                             }}
                           >
                             Checkout
@@ -144,7 +147,7 @@ const CartDisplay = () => {
         </Dialog>
       </Transition.Root>
     </>
-  )
-}
+  );
+};
 
-export default CartDisplay
+export default CartDisplay;
