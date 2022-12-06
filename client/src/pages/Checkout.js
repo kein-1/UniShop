@@ -8,7 +8,7 @@ const Checkout = () => {
 
   // When form is big, we can use this tactic to have all the forms share a single state object
   // rather than use multiple useStates for each form value
-  const [form, setForm] = useState({
+  const [shippingInfo, setShippingInfo] = useState({
     email: "",
     firstName: "",
     lastName: "",
@@ -17,6 +17,13 @@ const Checkout = () => {
     state: "",
     zip: "",
     phoneNumber: "",
+  });
+
+  const [paymentInfo, setPaymentInfo] = useState({
+    name: "",
+    cardNumber: "",
+    cardExp: "",
+    cardCVC: "",
   });
 
   // The global states we stored
@@ -39,7 +46,7 @@ const Checkout = () => {
   const formHandler = (event) => {
     event.preventDefault();
     console.log(event.target.id);
-    setForm({
+    setShippingInfo({
       email: "",
       firstName: "",
       lastName: "",
@@ -49,43 +56,53 @@ const Checkout = () => {
       zip: "",
       phoneNumber: "",
     });
+
+    setPaymentInfo({
+      name: "",
+      cardNumber: "",
+      cardExp: "",
+      cardCVC: "",
+    });
   };
 
   // Learned this: ES6 bracket notation around a key lets us use a variable key
   // So now we can just copy over the current form object, then replace the key with
   // the ID key value (based on the input values ID)
-  const inputHandler = (event) => {
-    console.log(form);
-    setForm({ ...form, [event.target.id]: event.target.value });
+  const shippingInputHandler = (event) => {
+    setShippingInfo({ ...shippingInfo, [event.target.id]: event.target.value });
+  };
+
+  const paymentInputHandler = (event) => {
+    setPaymentInfo({ ...paymentInfo, [event.target.id]: event.target.value });
   };
 
   return (
     <>
       <div className="flex mt-12 w-3/5 m-auto gap-4">
         <form className="w-full flex flex-col gap-4" onSubmit={formHandler}>
+          <p className="text-lg">Contact information</p>
+
           <div className="flex flex-col gap-4">
-            <p>Contact information</p>
             <div>
               <input
                 type="text"
                 id="email"
-                value={form.email}
-                onChange={inputHandler}
+                value={shippingInfo.email}
+                onChange={shippingInputHandler}
                 className="input input-bordered input-primary w-full"
                 placeholder="Email"
               />
             </div>
           </div>
+          <p className="text-lg">Shipping Address</p>
 
           <div className="flex flex-col gap-4">
-            <p className="">Shipping Address</p>
-
             <div className="flex gap-4">
               <input
                 type="text"
                 id="firstName"
-                value={form.firstName}
-                onChange={inputHandler}
+                value={shippingInfo.firstName}
+                onChange={shippingInputHandler}
                 className="input input-bordered input-primary w-full"
                 placeholder="First Name"
               />
@@ -93,8 +110,8 @@ const Checkout = () => {
               <input
                 type="text"
                 id="lastName"
-                value={form.lastName}
-                onChange={inputHandler}
+                value={shippingInfo.lastName}
+                onChange={shippingInputHandler}
                 className="input input-bordered input-primary w-full"
                 placeholder="Last Name"
               />
@@ -103,9 +120,9 @@ const Checkout = () => {
             <div className="flex gap-4 ">
               <input
                 type="text"
-                id="address"
-                value={form.address}
-                onChange={inputHandler}
+                id="name"
+                value={shippingInfo.street}
+                onChange={shippingInputHandler}
                 className="input input-bordered input-primary w-full"
                 placeholder="Address"
               />
@@ -115,8 +132,8 @@ const Checkout = () => {
               <input
                 type="text"
                 id="city"
-                value={form.city}
-                onChange={inputHandler}
+                value={shippingInfo.city}
+                onChange={shippingInputHandler}
                 className="input input-bordered input-primary w-full"
                 placeholder="City"
               />
@@ -124,8 +141,8 @@ const Checkout = () => {
               <input
                 type="text"
                 id="state"
-                value={form.state}
-                onChange={inputHandler}
+                value={shippingInfo.state}
+                onChange={shippingInputHandler}
                 className="input input-bordered input-primary w-full"
                 placeholder="State"
               />
@@ -133,8 +150,8 @@ const Checkout = () => {
               <input
                 type="text"
                 id="zip"
-                value={form.zip}
-                onChange={inputHandler}
+                value={shippingInfo.zip}
+                onChange={shippingInputHandler}
                 className="input input-bordered input-primary w-full"
                 placeholder="Zip"
               />
@@ -144,15 +161,61 @@ const Checkout = () => {
               <input
                 type="number"
                 id="phoneNumber"
-                value={form.phoneNumber}
-                onChange={inputHandler}
+                value={shippingInfo.phoneNumber}
+                onChange={shippingInputHandler}
                 className="input input-bordered input-primary w-full"
                 placeholder="Phone Number"
               />
             </div>
           </div>
+          <p className="text-lg">Payment Option</p>
+          <div className="flex flex-col gap-4">
+            <div>
+              <input
+                type="text"
+                id="name"
+                value={paymentInfo.name}
+                onChange={paymentInputHandler}
+                className="input input-bordered input-primary w-full"
+                placeholder="Name on card"
+              />
+            </div>
+          </div>
+          <p className="text-lg">Card Info</p>
+          <div className="flex flex-col gap-4">
+            <div>
+              <input
+                type="text"
+                id="cardNumber"
+                value={paymentInfo.cardNumber}
+                onChange={paymentInputHandler}
+                className="input input-bordered input-primary w-full"
+                placeholder="Card Number"
+              />
+            </div>
 
-          <button className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full text-sm w-full active:transform active:scale-90 active:duration-200 active:ease-out ">
+            <div className="flex gap-4 ">
+              <input
+                type="text"
+                id="cardExp"
+                value={paymentInfo.cardExp}
+                onChange={paymentInputHandler}
+                className="input input-bordered input-primary w-full"
+                placeholder="MM/YY"
+              />
+
+              <input
+                type="text"
+                id="cardCVC"
+                value={paymentInfo.cardCVC}
+                onChange={paymentInputHandler}
+                className="input input-bordered input-primary w-full"
+                placeholder="CVC"
+              />
+            </div>
+          </div>
+
+          <button className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full text-sm w-full active:transform active:scale-90 active:duration-200 active:ease-out mb-12">
             Place Order!
           </button>
         </form>
