@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import CartItem from "../components/CartItem";
-import { getAllCartItems } from "../services/cart";
-import { useTotalPriceStore } from "../stateStore";
+import { useState, useEffect } from "react"
+import CartItem from "../components/CartItem"
+import { getAllCartItems } from "../services/cart"
+import { useTotalPriceStore } from "../stateStore"
 
 const Checkout = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([])
 
   // When form is big, we can use this tactic to have all the forms share a single state object
   // rather than use multiple useStates for each form value
@@ -16,36 +16,36 @@ const Checkout = () => {
     city: "",
     state: "",
     zip: "",
-    phoneNumber: "",
-  });
+    phoneNumber: ""
+  })
 
   const [paymentInfo, setPaymentInfo] = useState({
     name: "",
     cardNumber: "",
     cardExp: "",
-    cardCVC: "",
-  });
+    cardCVC: ""
+  })
 
   // The global states we stored
-  const cartPrice = useTotalPriceStore((state) => state.totalPrice);
+  const cartPrice = useTotalPriceStore((state) => state.totalPrice)
 
   // Instead of using another useEffect hook here, can we store the cartItem in a global state, and manage it through our stateStore?
   //
   useEffect(() => {
     const getCartItems = async () => {
       try {
-        const { cart } = await getAllCartItems();
-        setCartItems(cart);
+        const { cart } = await getAllCartItems()
+        setCartItems(cart)
       } catch {
-        console.log("FAILED TO RETRIEVE ITEMS");
+        console.log("FAILED TO RETRIEVE ITEMS")
       }
-    };
-    getCartItems();
-  }, []);
+    }
+    getCartItems()
+  }, [])
 
   const formHandler = (event) => {
-    event.preventDefault();
-    console.log(event.target.id);
+    event.preventDefault()
+    console.log(event.target.id)
     setShippingInfo({
       email: "",
       firstName: "",
@@ -54,27 +54,23 @@ const Checkout = () => {
       city: "",
       state: "",
       zip: "",
-      phoneNumber: "",
-    });
+      phoneNumber: ""
+    })
 
     setPaymentInfo({
       name: "",
       cardNumber: "",
       cardExp: "",
-      cardCVC: "",
-    });
-  };
+      cardCVC: ""
+    })
+  }
 
   // Learned this: ES6 bracket notation around a key lets us use a variable key
   // So now we can just copy over the current form object, then replace the key with
   // the ID key value (based on the input values ID)
   const shippingInputHandler = (event) => {
-    setShippingInfo({ ...shippingInfo, [event.target.id]: event.target.value });
-  };
-
-  const paymentInputHandler = (event) => {
-    setPaymentInfo({ ...paymentInfo, [event.target.id]: event.target.value });
-  };
+    setShippingInfo({ ...shippingInfo, [event.target.id]: event.target.value })
+  }
 
   return (
     <>
@@ -168,52 +164,8 @@ const Checkout = () => {
               />
             </div>
           </div>
-          <p className="text-lg">Payment Option</p>
-          <div className="flex flex-col gap-4">
-            <div>
-              <input
-                type="text"
-                id="name"
-                value={paymentInfo.name}
-                onChange={paymentInputHandler}
-                className="input input-bordered input-primary w-full"
-                placeholder="Name on card"
-              />
-            </div>
-          </div>
+
           <p className="text-lg">Card Info</p>
-          <div className="flex flex-col gap-4">
-            <div>
-              <input
-                type="text"
-                id="cardNumber"
-                value={paymentInfo.cardNumber}
-                onChange={paymentInputHandler}
-                className="input input-bordered input-primary w-full"
-                placeholder="Card Number"
-              />
-            </div>
-
-            <div className="flex gap-4 ">
-              <input
-                type="text"
-                id="cardExp"
-                value={paymentInfo.cardExp}
-                onChange={paymentInputHandler}
-                className="input input-bordered input-primary w-full"
-                placeholder="MM/YY"
-              />
-
-              <input
-                type="text"
-                id="cardCVC"
-                value={paymentInfo.cardCVC}
-                onChange={paymentInputHandler}
-                className="input input-bordered input-primary w-full"
-                placeholder="CVC"
-              />
-            </div>
-          </div>
 
           <button className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full text-sm w-full active:transform active:scale-90 active:duration-200 active:ease-out mb-12">
             Place Order!
@@ -238,7 +190,7 @@ const Checkout = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Checkout;
+export default Checkout

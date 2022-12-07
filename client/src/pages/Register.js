@@ -41,9 +41,9 @@ const Register = () => {
   }
 
   return (
-    <>
+    <div className="flex h-full items-center justify-center">
       <form
-        className="flex flex-col mt-20 w-1/3 m-auto gap-4 border-2 border-purple-400 p-4"
+        className="flex flex-col w-1/4 gap-4 border-2 border-purple-400 p-8 h-auto"
         onSubmit={registerHandler}
       >
         <h3 className="text-center">{message}</h3>
@@ -91,7 +91,7 @@ const Register = () => {
           </Link>
         </h4>
       </form>
-    </>
+    </div>
   )
 }
 

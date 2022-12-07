@@ -1,35 +1,35 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 const Login = () => {
   // When form is big, we can use this tactic to have all the forms share a single state object
   // rather than use multiple useStates for each form value
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
   const formHandler = (event) => {
-    event.preventDefault();
-  };
+    event.preventDefault()
+  }
 
   const userHandler = (event) => {
-    setUsername(event.target.value);
-  };
+    setUsername(event.target.value)
+  }
   const passwordHandler = (event) => {
-    setPassword(event.target.value);
-  };
+    setPassword(event.target.value)
+  }
 
   const loginHandler = (event) => {
-    event.preventDefault();
-    console.log(username);
-    console.log(password);
-    setUsername("");
-    setPassword("");
-  };
+    event.preventDefault()
+    console.log(username)
+    console.log(password)
+    setUsername("")
+    setPassword("")
+  }
 
   return (
-    <>
+    <div className="flex h-full items-center justify-center">
       <form
-        className="flex flex-col mt-20 w-1/3 m-auto gap-4 border-2 border-purple-400 p-4"
+        className="flex flex-col w-1/4 gap-4 border-2 border-purple-400 p-8 h-auto"
         onSubmit={loginHandler}
       >
         <div>
@@ -65,8 +65,8 @@ const Login = () => {
           </Link>
         </h4>
       </form>
-    </>
-  );
-};
+    </div>
+  )
+}
 
-export default Login;
+export default Login
