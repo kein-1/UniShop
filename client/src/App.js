@@ -7,7 +7,6 @@ import ProductOverviewContent from "./components/ProductOverviewContent"
 
 import Home from "./pages/Home"
 import ProductsMain from "./pages/ProductsMain"
-import Checkout from "./pages/Checkout"
 import Register from "./pages/Register"
 import Login from "./pages/Login"
 import CheckoutSuccess from "./pages/CheckoutSuccess"
@@ -23,7 +22,6 @@ const App = () => {
         <Route path="/account" element={<Register />} />
         <Route path="/shop" element={<ProductsMain />} />
         <Route path="/products/:id" element={<ProductOverviewContent />} />
-        <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/success" element={<CheckoutSuccess />} />

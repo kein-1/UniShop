@@ -6,7 +6,7 @@ const client = require("../elephant");
 // Setup an end point that lets you retrieve all the items in the cart
 cartRouter.get("/", async (request, response) => {
   console.log(request.headers);
-  console.log(request.sessionID);
+  console.log(request.session);
 
   const { items } = request.session;
   if (!items) {
@@ -22,15 +22,16 @@ cartRouter.delete("/:id", async (request, response) => {
   if (!id) return response.status(400).send("Missing id");
 
   const { items } = request.session;
-  if (!items) return response.status(400).send("No items in cart. Invalid request to delete");
+  if (!items)
+    return response
+      .status(400)
+      .send("No items in cart. Invalid request to delete");
   request.session.items = items.filter((element) => element.id !== Number(id));
   return response.status(201).json("deleted from cart");
 });
 
 cartRouter.post("/", async (request, response) => {
-  const {
-    id, title, quantity, totalPrice, productImage,
-  } = request.body;
+  const { id, title, quantity, totalPrice, productImage } = request.body;
 
   console.log(request.headers);
 

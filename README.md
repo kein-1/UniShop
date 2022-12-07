@@ -1,6 +1,14 @@
 # UniShop
 
-E-commerce Shopping App built using React, Node.js, PostgreSQL, and Express. Styled using TailwindCSS
+E-commerce Shopping App built using React, Node.js, PostgreSQL,Express, TailwindCSS, and Stripe API. 
+
+### Features
+- Fully styled landing page with functional Navbar
+- Products are displayed in a grid. Users can click each product card for a description of the product 
+- Users can add or remove items from their cart. Price and quantity are updated accordingly
+- Users can checkout once they are done
+- Users can login and register
+- If logged in, users have a personalized page with their info and orders  
 
 ### What I learned building this 
 
@@ -18,6 +26,15 @@ It was my first full stack app without any real guidance. A lot of the concepts 
 5. <ins> Styling with TailwindCSS </ins> - Utilized a combination of DaisyUI and HeadlessUI to help with some of the complicated animation styling. CSS is still tough!
 6. <ins> React Router </ins> - Applied React Router (Routes and Links) to render different components based on the URL. This gives the website routing and renders different components based on the URL the site is on
 7. <ins> React Forms Library Hook </ins> - 
+
+
+### Things I still need to fix or add 
+
+- Issues with maintaining the cart items if the user cancels the transaction. Currently I have it setup so that the request.session.items (the cart items) will clear once the checkout button is clicked (post request) 
+- Custom user page, user authentication and authorization 
+- Filters to the products page 
+- Setup backend server for orders and order info 
+
 
 ### Supplementary NPM Packages
 

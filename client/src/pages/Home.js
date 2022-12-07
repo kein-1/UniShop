@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const Home = () => {
+  // https://cdn.shopify.com/videos/c/o/v/1dffd6574e6f4b7eaa4b43ba9703676b.mp4
+  //https://cdn.shopify.com/videos/c/o/v/c1639bc8bb944a579be678105b31b6a5.mp4
   return (
     <>
       <div className="flex relative">
         <video className="w-full" autoPlay loop muted>
           <source
-            src="https://cdn.shopify.com/videos/c/o/v/1dffd6574e6f4b7eaa4b43ba9703676b.mp4"
+            src="https://cdn.shopify.com/videos/c/o/v/c1639bc8bb944a579be678105b31b6a5.mp4"
             type="video/mp4"
           />
         </video>
@@ -25,7 +27,7 @@ const Home = () => {
             alt=""
           />
 
-          <h1 className="text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <h1 className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             UNISHOP
           </h1>
         </div>
@@ -36,8 +38,8 @@ const Home = () => {
             alt=""
           />
 
-          <h1 className="text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            UNISHOP
+          <h1 className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            ELECTRONICS
           </h1>
         </div>
 
@@ -48,13 +50,13 @@ const Home = () => {
             className="h-full"
           />
 
-          <h1 className="text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            UNISHOP
+          <h1 className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            HYPE
           </h1>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
