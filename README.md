@@ -3,6 +3,7 @@
 E-commerce Shopping App built using React, Node.js, PostgreSQL,Express, TailwindCSS, and Stripe API. 
 
 ### Features
+- Fully functional e-commerce site that users can add/remove products and checkout once they are complete
 - Fully styled landing page with functional Navbar
 - Products are displayed in a grid. Users can click each product card for a description of the product 
 - Users can add or remove items from their cart. Price and quantity are updated accordingly
