@@ -1,58 +1,54 @@
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import { loginUser } from "../services/users"
-import { useUserStore } from "../stateStore"
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { loginUser } from "../services/users";
+import { useUserStore } from "../stateStore";
 
 const Login = () => {
   // When form is big, we can use this tactic to have all the forms share a single state object
   // rather than use multiple useStates for each form value
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [errorMessage, setErrorMessage] = useState("")
-  const [showError, setShowErrorMessage] = useState(false)
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showError, setShowErrorMessage] = useState(false);
 
-  const setUser = useUserStore((state) => state.setUser)
+  const setUser = useUserStore((state) => state.setUser);
+  const setToken = useUserStore((state) => state.setToken);
 
   const userHandler = (event) => {
-    setUsername(event.target.value)
-  }
+    setUsername(event.target.value);
+  };
   const passwordHandler = (event) => {
-    setPassword(event.target.value)
-  }
+    setPassword(event.target.value);
+  };
 
   // Log the user in
   const loginHandler = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     const userInfo = {
       username,
-      password
-    }
+      password,
+    };
     try {
       // The service function returns response.data which has the return object
       // from the backend
-      const { token, name } = await loginUser(userInfo)
+      const { token, name } = await loginUser(userInfo);
 
       // Set the token and name into our state through the state functions from our store.
-      // Why is it not working !! Its showing up as empty object in localStorage
-      const user = {
-        name,
-        token
-      }
-
-      setUser(user)
+      setUser(name);
+      setToken(token);
 
       // Rest the fields and states
-      setUsername("")
-      setPassword("")
-      setErrorMessage("")
-      setShowErrorMessage(false)
+      setUsername("");
+      setPassword("");
+      setErrorMessage("");
+      setShowErrorMessage(false);
     } catch (error) {
-      console.log("IN HERE")
-      setErrorMessage(error.response.data)
-      setShowErrorMessage(true)
+      console.log("IN HERE");
+      setErrorMessage(error.response.data);
+      setShowErrorMessage(true);
     }
-  }
+  };
 
   return (
     <div className="flex h-full items-center justify-center">
@@ -98,7 +94,7 @@ const Login = () => {
         </h4>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

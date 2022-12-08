@@ -1,8 +1,8 @@
 import axios from "axios"
 axios.defaults.withCredentials = true // had to configure this for the cookies to send from backend..
 
-const baseUrl = "http://localhost:3001/api/cart"
-// const baseUrl = "https://51mw8f-3001.preview.csb.app/api/cart"
+// const baseUrl = "http://localhost:3001/api/cart"
+const baseUrl = "https://tvskuv-3001.preview.csb.app/api/cart"
 
 const addProductToCart = async (productInfo) => {
   const response = await axios.post(baseUrl, productInfo)

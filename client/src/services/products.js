@@ -1,8 +1,8 @@
 import axios from "axios"
 axios.defaults.withCredentials = true // had to configure this for the cookies to send from backend..
 
-const baseUrl = "http://localhost:3001/api/products"
-// const baseUrl = "https://51mw8f-3001.preview.csb.app/api/products";
+// const baseUrl = "http://localhost:3001/api/products"
+const baseUrl = "https://tvskuv-3001.preview.csb.app/api/products";
 
 const getAllProducts = async () => {
   const items = await axios.get(baseUrl)
