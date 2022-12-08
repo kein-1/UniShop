@@ -21,20 +21,21 @@ const productRouter = require("./routes/products");
 const cartRouter = require("./routes/cart");
 const checkoutRouter = require("./routes/checkout");
 
-// const origin = "http://localhost:3000";
-const origin = [
-  "https://51mw8f-3000.preview.csb.app",
-  "https://51mw8f-3001.preview.csb.app",
-];
+const origin = "http://localhost:3000";
+// const origin = [
+//   "https://51mw8f-3000.preview.csb.app",
+//   "https://51mw8f-3001.preview.csb.app",
+// ];
 
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(
   cors({
-    origin: [origin], // look up how to configure this based on dev/production. Probably use a .envc variable
+    // look up how to configure this based on dev/production.
+    origin: [origin],
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
     credentials: true,
-  }) // had to configure this for cookies to send.. need to update origin when in production
+  }), // had to configure this for cookies to send.. need to update origin when in production
 );
 
 // WHY ARE COOKIES NOT BEING SAVED IN BROWSER??
@@ -43,7 +44,7 @@ app.use(
     secret: process.env.SECRET_WORD,
     resave: false,
     saveUninitalized: true,
-  })
+  }),
 );
 
 app.use("/api/users", usersRouter);

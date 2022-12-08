@@ -5,8 +5,8 @@ const express = require("express");
 const checkoutRouter = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
-const origin = "https://51mw8f-3000.preview.csb.app";
-// const origin = "http://localhost:3000";
+// const origin = "https://51mw8f-3000.preview.csb.app";
+const origin = "http://localhost:3000";
 
 checkoutRouter.post("/create-checkout-session", async (request, response) => {
   const cartItems = request.body; // in front end, we passed in the cartItems
@@ -47,7 +47,7 @@ checkoutRouter.post("/create-checkout-session", async (request, response) => {
       cancel_url: `${origin}/cancel`,
     });
 
-    //Clear the cart. Since the cart is tracked from the backend, set it back to an empty arr
+    // Clear the cart. Since the cart is tracked from the backend, set it back to an empty arr
     request.session.items = [];
 
     // This is the session object created from Stripe API. I had multiple issues

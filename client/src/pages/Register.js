@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import registerUser from "../services/users"
+import { registerUser } from "../services/users"
 
 const Register = () => {
   // When form is big, we can use this tactic to have all the forms share a single state object

@@ -1,23 +1,21 @@
 require("dotenv").config();
 const express = require("express");
 const bcrypt = require("bcrypt");
-const client = require("../elephant");
 const jwt = require("jsonwebtoken");
+const client = require("../elephant");
+
 const usersRouter = express.Router();
 
 usersRouter.post("/login", async (request, response) => {
   const { username, password } = request.body;
-  const { rows } = await client.query(
-    "SELECT * FROM users WHERE username = $1",
-    [username]
-  );
-  if (rows.length === 0)
-    return response.send("Incorrect username or password!");
+  const { rows } = await client.query("SELECT * FROM users WHERE username = $1", [username]);
+  if (rows.length === 0) return response.status(400).send("Incorrect username or password!");
 
-  //Can index into 1st column since usernames are unique so it will always return 1 entry
+  // Can index into 1st column since usernames are unique so
+  // it will always return 1 entry
   const passwordCorrect = await bcrypt.compare(password, rows[0].password_hash);
 
-  if (!passwordCorrect) return response.send("Incorrect username or password!");
+  if (!passwordCorrect) return response.status(400).send("Incorrect username or password!");
 
   const userTokenInfo = {
     username,
@@ -31,10 +29,7 @@ usersRouter.post("/login", async (request, response) => {
 
 usersRouter.post("/", async (request, response) => {
   const { username, password, email } = request.body;
-  if (!username || !password || !email)
-    return response
-      .status(404)
-      .json({ errorMessage: "Missing username, password, or email!" });
+  if (!username || !password || !email) return response.status(404).json({ errorMessage: "Missing username, password, or email!" });
 
   const saltRounds = 10;
 
