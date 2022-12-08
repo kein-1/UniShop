@@ -42,11 +42,8 @@ const Navbar = () => {
             SEARCH
           </h3>
         </Link>
-        
         {user ? 
         <div>
-          
-          
           <div className="dropdown dropdown-end">
             <h3 tabIndex={0} className="font-black text-sm hover:underline underline-offset-8 decoration-blue-600 tracking-widest -translate-y-1">ACCOUNT</h3>
             <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
