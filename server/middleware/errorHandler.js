@@ -17,7 +17,7 @@ const errorHandler = async (error, request, response, next) => {
       `The error name is ${error.name}. This is a PostgreSQL error. Error message: ${error.message}`,
     );
 
-    return response.status(400).json({ message: "User already exists!" });
+    return response.status(400).json({ message: error.message });
   }
   console.log("DIFFERENT ERROR");
   console.log(error);

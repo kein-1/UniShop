@@ -56,12 +56,18 @@ checkoutRouter.post("/create-checkout-session", tokenExtractor, async (request, 
     if (userToken) {
       // Save this user's order into our database
       const userInfo = jwt.verify(userToken, process.env.JWT_KEY);
+      const orderNumber = Math.floor(100000 + Math.random() * 900000);
+      const items = cartItems.map((element) => element.title);
+      const total = parseFloat(
+        cartItems.reduce((prev, curr) => prev + curr.totalPrice, 0).toFixed(3),
+      );
 
       const query = {
-        text:
-        values: 
-      }
-      console.log(userInfo);
+        text: "INSERT INTO orders(user_id,order_number, order_total, order_items) VALUES ($1,$2,$3,$4)",
+        values: [userInfo.id, orderNumber, total, items],
+      };
+
+      await client.query(query);
     }
 
     // Clear the cart. Since the cart is tracked from the backend, set it back to an empty arr
