@@ -4,12 +4,14 @@ const express = require("express");
 
 const checkoutRouter = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
+const tokenExtractor = require("../middleware/tokenExtractor");
 
-// const origin = "https://51mw8f-3000.preview.csb.app";
 const origin = "http://localhost:3000";
 
-checkoutRouter.post("/create-checkout-session", async (request, response) => {
+checkoutRouter.post("/create-checkout-session", tokenExtractor, async (request, response) => {
   const cartItems = request.body; // in front end, we passed in the cartItems
+  console.log(cartItems);
+
   if (cartItems) {
     const line_items = cartItems.map((element) => ({
       price_data: {
