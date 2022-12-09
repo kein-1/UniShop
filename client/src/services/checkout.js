@@ -5,7 +5,10 @@ const baseUrl = "http://localhost:3001/api/checkout/create-checkout-session"
 const checkoutProducts = async (cartItems) => {
   console.log("In checkout to stripe frontend here ")
 
+  // JSON.parse turns the string into an object. Only strings are saved in localStorage
+  // This object has a state property which corresponds to our global store value
   const { state } = JSON.parse(window.localStorage.getItem("user"))
+
   // If the user is logged in, pass his ID to the backend
   if (state) {
     const bearer = `bearer ${state.userToken}`

@@ -23,7 +23,8 @@ usersRouter.post("/login", async (request, response) => {
   };
   console.log(rows);
 
-  const token = jwt.sign(userTokenInfo, process.env.JWT_KEY);
+  // Sign the token and set it to expire in 1 hour
+  const token = jwt.sign(userTokenInfo, process.env.JWT_KEY, { expiresIn: 60 * 60 });
   return response.send({ token, username, name: rows[0].firstname });
 });
 

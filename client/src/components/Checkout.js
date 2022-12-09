@@ -1,6 +1,7 @@
 import checkoutProducts from "../services/checkout"
 
 const Checkout = ({ cartItems }) => {
+  
   const checkoutHandler = async () => {
     try {
       const response = await checkoutProducts(cartItems)

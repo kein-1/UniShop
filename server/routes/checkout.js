@@ -4,15 +4,19 @@ const express = require("express");
 
 const checkoutRouter = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
+const jwt = require("jsonwebtoken");
 const tokenExtractor = require("../middleware/tokenExtractor");
+
+const client = require("../elephant");
 
 const origin = "http://localhost:3000";
 
 checkoutRouter.post("/create-checkout-session", tokenExtractor, async (request, response) => {
   const cartItems = request.body; // in front end, we passed in the cartItems
-  console.log(cartItems);
+  const userToken = request.userToken;
 
-  if (cartItems) {
+  // Object.keys(obj) turns it into an array with its values being the keys of the object
+  if (Object.keys(cartItems).length !== 0) {
     const line_items = cartItems.map((element) => ({
       price_data: {
         currency: "usd",
@@ -49,14 +53,26 @@ checkoutRouter.post("/create-checkout-session", tokenExtractor, async (request, 
       cancel_url: `${origin}/cancel`,
     });
 
+    if (userToken) {
+      // Save this user's order into our database
+      const userInfo = jwt.verify(userToken, process.env.JWT_KEY);
+
+      const query = {
+        text:
+        values: 
+      }
+      console.log(userInfo);
+    }
+
     // Clear the cart. Since the cart is tracked from the backend, set it back to an empty arr
     request.session.items = [];
 
     // This is the session object created from Stripe API. I had multiple issues
     // with CORS and redirecting from the backend.. so I sent the URL back to the
     // front-end to do the redirecting
-    response.send({ url: session.url });
+    return response.send({ url: session.url });
   }
+  return response.send("EMPTY CART");
 });
 
 module.exports = checkoutRouter;
