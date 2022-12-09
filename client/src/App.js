@@ -1,21 +1,21 @@
-import "./index.css";
-import { Route, Routes } from "react-router-dom";
+import "./index.css"
+import { Route, Routes } from "react-router-dom"
 
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import ProductOverviewContent from "./components/ProductOverviewContent";
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
+import ProductOverviewContent from "./components/ProductOverviewContent"
 
-import Home from "./pages/Home";
-import ProductsMain from "./pages/ProductsMain";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import CheckoutSuccess from "./pages/CheckoutSuccess";
-import CheckoutCancel from "./pages/CheckoutCancel";
-import Account from "./components/Account";
-import { useUserStore } from "./stateStore";
+import Home from "./pages/Home"
+import ProductsMain from "./pages/ProductsMain"
+import Register from "./pages/Register"
+import Login from "./pages/Login"
+import CheckoutSuccess from "./pages/CheckoutSuccess"
+import CheckoutCancel from "./pages/CheckoutCancel"
+import Account from "./components/Account"
+import { useUserStore } from "./stateStore"
 
 const App = () => {
-  const user = useUserStore((state) => state.user);
+  const user = useUserStore((state) => state.user)
 
   return (
     <>
@@ -40,6 +40,6 @@ const App = () => {
       </Routes>
       <Footer />
     </>
-  );
-};
-export default App;
+  )
+}
+export default App

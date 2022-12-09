@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseUrl = "http://localhost:3001/api/orders"
+const baseUrl = `${process.env.REACT_APP_API_URL}/api/orders`
 
 const getOrders = async () => {
   const { state } = JSON.parse(window.localStorage.getItem("user"))

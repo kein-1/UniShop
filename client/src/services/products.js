@@ -1,7 +1,7 @@
 import axios from "axios"
 axios.defaults.withCredentials = true // had to configure this for the cookies to send from backend..
 
-const baseUrl = "http://localhost:3001/api/products"
+const baseUrl = `${process.env.REACT_APP_API_URL}/api/checkout/products`
 
 const getAllProducts = async () => {
   const items = await axios.get(baseUrl)

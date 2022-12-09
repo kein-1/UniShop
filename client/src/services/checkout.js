@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseUrl = "http://localhost:3001/api/checkout/create-checkout-session"
+const baseUrl = `${process.env.REACT_APP_API_URL}/api/checkout/create-checkout-session`
 
 const checkoutProducts = async (cartItems) => {
   console.log("In checkout to stripe frontend here ")

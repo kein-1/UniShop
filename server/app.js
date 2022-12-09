@@ -35,7 +35,6 @@ app.use(
   }), // had to configure this for cookies to send.. need to update origin when in production
 );
 
-// WHY ARE COOKIES NOT BEING SAVED IN BROWSER??
 app.use(
   session({
     secret: process.env.SECRET_WORD,
