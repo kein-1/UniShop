@@ -26,7 +26,6 @@ It was my first full stack app without any real guidance. A lot of the concepts 
 4. <ins> PostgreSQL </ins> I learned some basic SQL commands with this project. My database consists of users and product items 
 5. <ins> Styling with TailwindCSS </ins> - Utilized a combination of DaisyUI and HeadlessUI to help with some of the complicated animation styling. CSS is still tough!
 6. <ins> React Router </ins> - Applied React Router (Routes and Links) to render different components based on the URL. This gives the website routing and renders different components based on the URL the site is on
-7. <ins> React Forms Library Hook </ins> - 
 
 
 ### Things I still need to fix or add 
