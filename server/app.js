@@ -20,6 +20,7 @@ const usersRouter = require("./routes/users");
 const productRouter = require("./routes/products");
 const cartRouter = require("./routes/cart");
 const checkoutRouter = require("./routes/checkout");
+const ordersRouter = require("./routes/orders");
 
 const origin = "http://localhost:3000";
 
@@ -47,6 +48,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/products", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/checkout", checkoutRouter);
+app.use("/api/orders", ordersRouter);
 
 app.use(errorHandler);
 
