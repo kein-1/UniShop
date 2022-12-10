@@ -2,7 +2,6 @@ import { Fragment, useState, useEffect } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import CartItem from "./CartItem"
 import { getAllCartItems } from "../services/cart"
-import { useNavigate } from "react-router-dom"
 import { useQuantityStore, useTotalPriceStore } from "../stateStore"
 
 import Checkout from "./Checkout"
@@ -14,9 +13,6 @@ const CartDisplay = () => {
   // The global states we stored
   const cartQuantity = useQuantityStore((state) => state.cartQuantity)
   const cartPrice = useTotalPriceStore((state) => state.totalPrice)
-
-  // Use navigate hook to redirect
-  const navigate = useNavigate()
 
   // With this useEffect, I set it so that each time the bag is opened, the
   // cart is retrieved by hitting the cart endpoint via the
