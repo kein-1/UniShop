@@ -22,7 +22,7 @@ const cartRouter = require("./routes/cart");
 const checkoutRouter = require("./routes/checkout");
 const ordersRouter = require("./routes/orders");
 
-const origin = "http://localhost:3000";
+const origin = process.env.ORIGIN_1;
 
 app.use(express.json());
 app.use(morgan("tiny"));

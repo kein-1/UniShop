@@ -9,7 +9,7 @@ const tokenExtractor = require("../middleware/tokenExtractor");
 
 const client = require("../elephant");
 
-const origin = "http://localhost:3000";
+const origin = "https://unishop-frontend.onrender.com";
 
 checkoutRouter.post("/create-checkout-session", tokenExtractor, async (request, response) => {
   const cartItems = request.body; // in front end, we passed in the cartItems
