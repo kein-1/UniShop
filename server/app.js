@@ -10,10 +10,9 @@ const cors = require("cors");
 // Parses cookies to an object to be used. This can be omitted since we are using express-session
 // const cookieParser = require("cookie-parser");
 
-// Use express sessions
+// Use express sessions and setup a session store
 const session = require("express-session");
-
-// const client = require("./elephant");
+const pgSession = require("connect-pg-simple")(session);
 
 const errorHandler = require("./middleware/errorHandler");
 const usersRouter = require("./routes/users");
@@ -22,7 +21,7 @@ const cartRouter = require("./routes/cart");
 const checkoutRouter = require("./routes/checkout");
 const ordersRouter = require("./routes/orders");
 
-const origin = process.env.ORIGIN_1;
+const origin = process.env.NODE_ENV === "production" ? process.env.ORIGIN_1 : process.env.ORIGIN_2;
 
 app.use(express.json());
 app.use(morgan("tiny"));
@@ -35,11 +34,19 @@ app.use(
   }), // had to configure this for cookies to send.. need to update origin when in production
 );
 
+// Setup the session store here. conString is used to connect to our cloud database
+const postgreStore = new pgSession({
+  conString: process.env.PG_URL,
+  createTableIfMissing: true, // this will create a `session` table if you do not have it yet
+});
+
 app.use(
   session({
+    store: postgreStore,
     secret: process.env.SECRET_WORD,
     resave: false,
     saveUninitalized: true,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
   }),
 );
 
