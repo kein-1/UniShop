@@ -3,8 +3,6 @@ import axios from "axios"
 const baseUrl = `${process.env.REACT_APP_API_URL}/api/checkout/create-checkout-session`
 
 const checkoutProducts = async (cartItems) => {
-  console.log("In checkout to stripe frontend here ")
-
   // JSON.parse turns the string into an object. Only strings are saved in localStorage
   // This object has a state property which corresponds to our global store value
   const { state } = JSON.parse(window.localStorage.getItem("user"))

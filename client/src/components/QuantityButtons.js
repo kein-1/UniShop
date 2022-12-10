@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { addProductToCart } from "../services/cart";
+import { useState } from "react"
+import { addProductToCart } from "../services/cart"
 import {
   HiOutlineArrowCircleUp,
-  HiOutlineArrowCircleDown,
-} from "react-icons/hi";
-import { useQuantityStore, useTotalPriceStore } from "../stateStore";
+  HiOutlineArrowCircleDown
+} from "react-icons/hi"
+import { useQuantityStore, useTotalPriceStore } from "../stateStore"
 
 const QuantityButtons = (props) => {
-  const { id, price, title, product_image } = props;
-  const [quantity, setQuantity] = useState(1);
+  const { id, price, title, product_image } = props
+  const [quantity, setQuantity] = useState(1)
 
   /*
   I realized I was calling this function wrong. Make sure you ONLY include the
@@ -19,20 +19,20 @@ const QuantityButtons = (props) => {
   Here we are retrieving the two functions from our store and using them to
   update our current states
   */
-  const updateQuantity = useQuantityStore((state) => state.setCartQuantity);
-  const updateTotalPrice = useTotalPriceStore((state) => state.setTotalPrice);
+  const updateQuantity = useQuantityStore((state) => state.setCartQuantity)
+  const updateTotalPrice = useTotalPriceStore((state) => state.setTotalPrice)
 
   const addProductHandler = async () => {
     try {
-      const totalPrice = quantity * price;
-      const productImage = product_image;
-      await addProductToCart({ id, title, quantity, totalPrice, productImage });
-      updateQuantity(quantity);
-      updateTotalPrice(totalPrice);
+      const totalPrice = quantity * price
+      const productImage = product_image
+      await addProductToCart({ id, title, quantity, totalPrice, productImage })
+      updateQuantity(quantity)
+      updateTotalPrice(totalPrice)
     } catch {
-      console.log("FAILED TO ADD TO CART");
+      console.log("FAILED TO ADD TO CART")
     }
-  };
+  }
 
   return (
     <>
@@ -42,7 +42,7 @@ const QuantityButtons = (props) => {
           <p
             className="font-semibold hover:transform hover:scale-150 duration-300 text-lg active:transform active:translate-y-4 active:duration-500 active:ease-out"
             onClick={() => {
-              setQuantity(quantity - 1);
+              setQuantity(quantity - 1)
             }}
           >
             <HiOutlineArrowCircleDown />
@@ -51,7 +51,7 @@ const QuantityButtons = (props) => {
           <p
             className="font-semibold hover:transform hover:scale-150 duration-300 text-lg active:transform active:-translate-y-4 active:duration-500 active:ease-out"
             onClick={() => {
-              setQuantity(quantity + 1);
+              setQuantity(quantity + 1)
             }}
           >
             <HiOutlineArrowCircleUp />
@@ -68,7 +68,7 @@ const QuantityButtons = (props) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default QuantityButtons;
+export default QuantityButtons
