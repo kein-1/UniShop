@@ -40,6 +40,8 @@ const CartDisplay = () => {
     getCartItems()
   }, [open, cartQuantity, cartPrice])
 
+  console.log(cartItems)
+
   return (
     <>
       <h3
