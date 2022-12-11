@@ -48,10 +48,12 @@ app.use(
     secret: process.env.SECRET_WORD,
     resave: false,
     saveUninitalized: true,
-    cookie: { 
-      httpOnly:false,
+    cookie: {
+      httpsOnly: false,
+      sameSite: "none",
       secure: false,
-      maxAge: 24 * 60 * 60 * 1000 },
+      maxAge: 24 * 60 * 60 * 1000,
+    },
   }),
 );
 
