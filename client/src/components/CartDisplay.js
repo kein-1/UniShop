@@ -20,7 +20,7 @@ const CartDisplay = () => {
   // and is displayed on the client side
   // Currently it is a very expensive operation. I set it so that each time the cart changes
   // it makes a get request to the cart end point in the backend
-  // Should i store the cart values in a state or use local storage?\
+  // Should i store the cart values in a state or use local storage?
 
   // Instead of using another useEffect hook here, can we store the cartItem in a global state, and manage it through our stateStore?
 

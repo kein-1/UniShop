@@ -31,7 +31,9 @@ app.use(
     origin: [origin],
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
     credentials: true,
-  }), // had to configure this for cookies to send.. need to update origin when in production
+  }),
+  // In production, the cookie is changed each time. That is why I am
+  // not seeing items in my cart.. the sessionID also isn't being saved in cookie storage..
 );
 
 // Setup the session store here. conString is used to connect to our cloud database
@@ -46,7 +48,10 @@ app.use(
     secret: process.env.SECRET_WORD,
     resave: false,
     saveUninitalized: true,
-    cookie: { maxAge: 24 * 60 * 60 * 1000 },
+    cookie: { 
+      httpOnly:false,
+      secure: false,
+      maxAge: 24 * 60 * 60 * 1000 },
   }),
 );
 
