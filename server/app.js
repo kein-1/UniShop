@@ -42,6 +42,11 @@ const postgreStore = new pgSession({
   createTableIfMissing: true, // this will create a `session` table if you do not have it yet
 });
 
+// Running into problems in production where the cart is not being displayed because
+// each request makes a new session ID, hence a new session object.
+// Had to configure some stuff here
+app.set("trust proxy", 1);
+
 app.use(
   session({
     store: postgreStore,
