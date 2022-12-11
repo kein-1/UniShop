@@ -52,7 +52,7 @@ app.use(
     store: postgreStore,
     secret: process.env.SECRET_WORD,
     resave: false,
-    saveUninitalized: true,
+    saveUninitalized: false,
     cookie: {
       httpsOnly: false,
       sameSite: "none",
