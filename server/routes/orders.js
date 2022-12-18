@@ -17,7 +17,6 @@ ordersRouter.get("/", tokenExtractor, async (request, response) => {
 
   const { rows } = await client.query("SELECT * FROM orders WHERE user_id = $1", [userInfo.id]);
 
-  console.log(rows);
   return response.status(200).json({ data: rows });
 });
 

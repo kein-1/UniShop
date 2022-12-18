@@ -19,8 +19,10 @@ const errorHandler = async (error, request, response, next) => {
 
     return response.status(400).json({ message: error.message });
   }
+
   console.log("DIFFERENT ERROR");
   console.log(error);
+
   return response.status(400).json({ error: error.message });
 };
 

@@ -27,9 +27,7 @@ cartRouter.delete("/:id", async (request, response) => {
 });
 
 cartRouter.post("/", async (request, response) => {
-  const {
-    id, title, quantity, totalPrice, productImage,
-  } = request.body;
+  const { id, title, quantity, totalPrice, productImage } = request.body;
 
   // If this field exists, we add the item to it
   // Otherwise we make a new field called items and add the first

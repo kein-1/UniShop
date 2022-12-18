@@ -22,7 +22,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* Use conditional rendering to show either the user's page if the user is logged in or the users page  */}
+        {/* Use conditional rendering to show either the user's page if the user is logged in or the login page only   */}
 
         <Route
           path="/account"

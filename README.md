@@ -5,7 +5,7 @@ E-commerce Shopping App built using React, Node.js, PostgreSQL,Express, Tailwind
 <img src="/UniShop.gif"/>
 
 ### Features
-- Fully functional e-commerce site that users can add/remove products and checkout once they are complete
+- A complete e-commerce site that users can add/remove products and checkout once they are complete, register for an account, and login to see a history of their orders  
 - Fully styled landing page with functional Navbar
 - Products are displayed in a grid. Users can click each product card for a description of the product 
 - Users can add or remove items from their cart. Price and quantity are updated accordingly
@@ -35,7 +35,8 @@ It was my first full stack app without any real guidance. A lot of the concepts 
 
 - Issues with maintaining the cart items if the user cancels the transaction. Currently I have it setup so that the request.session.items (the cart items) will clear once the checkout button is clicked (post request) 
 - Filters to the products page 
-
+- Cookies/Sessions are working perfectly fine on localhost but when I deployed it, it resets with each request and hence no shopping cart value is maintained. I am thinking this is a CORS error
+- Stripe API works only in local dev testing 
 
 ### Supplementary NPM Packages
 

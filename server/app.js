@@ -23,6 +23,8 @@ const ordersRouter = require("./routes/orders");
 
 const origin = process.env.NODE_ENV === "production" ? process.env.ORIGIN_1 : process.env.ORIGIN_2;
 
+console.log(origin);
+
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(
@@ -31,7 +33,7 @@ app.use(
     origin,
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
     credentials: true,
-  }),
+  })
   // In production, the cookie is changed each time. That is why I am
   // not seeing items in my cart.. the sessionID also isn't being saved in cookie storage..
 );
@@ -45,7 +47,7 @@ const postgreStore = new pgSession({
 // Running into problems in production where the cart is not being displayed because
 // each request makes a new session ID, hence a new session object.
 // Had to configure some stuff here
-app.set("trust proxy", 1);
+// app.set("trust proxy", 1);
 
 app.use(
   session({
@@ -54,12 +56,12 @@ app.use(
     resave: false,
     saveUninitalized: false,
     cookie: {
-      httpsOnly: false,
-      sameSite: "none",
-      secure: false,
+      secure: process.env.NODE_ENV === "development" ? false : true,
+      httpOnly: process.env.NODE_ENV === "development" ? false : true,
+      sameSite: process.env.NODE_ENV === "development" ? false : "none",
       maxAge: 24 * 60 * 60 * 1000,
     },
-  }),
+  })
 );
 
 app.use("/api/users", usersRouter);
